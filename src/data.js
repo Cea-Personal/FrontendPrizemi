@@ -20,7 +20,7 @@ export const socialData = [
   {
     name: "twitter",
     icon: FaTwitterSquare,
-    url: "https://twitter.com/OB_CEA",
+    url: "https://twitter.com/basil_cea",
     offset: 250
   },
   {
@@ -32,7 +32,7 @@ export const socialData = [
   {
     name: "devTo",
     icon: FaDev,
-    url: "https://dev.to/cea",
+    url: "https://dev.to/basilcea",
     offset: 350
   },
   {
