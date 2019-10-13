@@ -13,6 +13,10 @@ const Container = styled.div`
     flex-direction:column;
     
   }
+  @media(max-height:450px){
+      flex-direction:row;
+      align-items:center;
+  }
 `;
 const Hero = styled.div`
   width: 40%;
@@ -35,6 +39,9 @@ const Hero = styled.div`
   p {
     font-size: 1.5em;
     margin-bottom: 5%;
+    @media(max-height:450px){
+        font-size:1em;
+      }
   }
   @media(max-width:800px){
     width:90%;
@@ -55,6 +62,11 @@ const Icon = styled.div`
     height:25%;
     width:90%;
   }
+  @media(max-height:450px){
+    order:0;
+    width:50%;
+    background-size:100% 200%;
+}
 `;
 const Details = styled.div`
   height: 30vh;
@@ -84,8 +96,14 @@ const Sign = styled.div`
  h2{
      color:rgb(74, 74, 125);
      font-size:1.5em;
+     @media(max-height:450px){
+        font-size:1em
+    }
  }
  @media(max-width:800px){
+    height:25%;
+}
+@media(max-height:450px){
     height:25%;
 }
 `
