@@ -119,7 +119,7 @@ const Socials = styled.div`
 `;
 
 const Home = () => {
-  const {settings,loginProvider,acceptInviteExternalUrl , isLoggedIn,user, logoutUser } = useIdentityContext()
+  const {settings,loginProvider,acceptInviteExternalUrl , isLoggedIn,user, logoutUser , isConfirmedUser } = useIdentityContext()
     const [show, setShow] = useState(false)
     const clicked = () => {
         setShow(true)
@@ -131,6 +131,7 @@ const Home = () => {
     const invite = async (value ) => {
       await acceptInviteExternalUrl(value , user.token.access_token)
     }
+    if (isConfirmedUser) user.role = 'interested'
     
   return (
     <Container>
