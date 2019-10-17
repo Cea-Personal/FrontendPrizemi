@@ -129,9 +129,7 @@ const Home = () => {
       Window.location = '/'
     }
     const invite = async (value ) => {
-      console.log('here')
       await acceptInviteExternalUrl(value , user.token.access_token)
-      console.log('there')
     }
     
   return (
