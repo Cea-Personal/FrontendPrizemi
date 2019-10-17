@@ -25,7 +25,7 @@ exports.handler = async (event, context) => {
       from: sender,
       to: user.email,
       subject: "Welcome to PrizeMi",
-      text: data.details
+      text: 'Thank you for your interest in PrizeMi. We will get back to you as soon as we launch. Kindly reach out to us on https://admin@prizemi.com';
     });
 
     user.role = "interested";

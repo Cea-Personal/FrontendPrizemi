@@ -4,7 +4,6 @@ import Typed from "react-typed";
 import background from "../assests/picture.svg";
 import { useIdentityContext } from "react-netlify-identity"
 import {FaGithub, FaBitbucket, FaGoogle } from 'react-icons/fa'
-import handler from '../functions/identity-login'
 const Container = styled.div`
   width: 100%;
   height: 100vh;
@@ -127,7 +126,6 @@ const Home = () => {
     }
     const authenticate = async(value) => {
       await loginProvider(value)
-      handler({body: 'Thank you for your interest in PrizeMi. We will get back to you as soon as we launch. Kindly reach out to us on https://admin@prizemi.com' })
       Window.location = '/'
     }
     
@@ -135,6 +133,7 @@ const Home = () => {
     <Container>
       <Hero>
         <Details>
+          {console.log(user)}
         <h1>PrizeMi </h1>
           <Typed
             strings={[
