@@ -164,7 +164,7 @@ const Home = () => {
             }
             {isLoggedIn &&
             <div>
-              <p>`You have successfully signed up ${user.getUserData.name}. Kindly check your email for further steps` </p>
+              <p>You have successfully signed up ${user.user_metadata.name}. Kindly check your email for further steps </p>
             <p>INVITE A DEVELOPER</p>
             <Socials>
             {settings && settings.external.google &&   <FaGoogle onClick={() => acceptInviteExternalUrl('google', user.token)}/>}
@@ -177,7 +177,7 @@ const Home = () => {
       </Hero>
       <Icon>
         {isLoggedIn && <div>
-          <span>`Hello ${user.getUserData.name}`</span>
+          <span>`Hello ${user.user_metadata.name}`</span>
           <button onClick={logoutUser}>Logout</button>
         </div>}
 
