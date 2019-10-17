@@ -5,6 +5,7 @@ import background from "../assests/picture.svg";
 import { useIdentityContext } from "react-netlify-identity"
 import {FaGithub, FaBitbucket, FaGoogle } from 'react-icons/fa'
 
+
 const Container = styled.div`
   width: 100%;
   height: 100vh;
@@ -120,17 +121,16 @@ const Socials = styled.div`
 `;
 
 const Home = () => {
-
-  const {settings,loginProvider,acceptInviteExternalUrl , isLoggedIn,user, logoutUser} = useIdentityContext()
+  let content;
+  const {settings,loginProvider,acceptInviteExternalUrl , isLoggedIn,user, logoutUser } = useIdentityContext()
     const [show, setShow] = useState(false)
     const clicked = () => {
         setShow(true)
     }
-    const authenticate = (value) => {
-      loginProvider(value)
-      user.role = 'interested'
+    const authenticate = async(value) => {
+      await loginProvider(value)
+      
       Window.location = '/'
-
     }
     
   return (
@@ -166,8 +166,8 @@ const Home = () => {
             }
             {isLoggedIn &&
             <div>
-              <p>Welcome ${user.user_metadata.full_name}. Kindly check your email for further steps </p>
-            <p>INVITE A DEVELOPER</p>
+              {user.role === 'interested'? content = `Thank you ${user.user_metadata.full_name} for checking in. We will get you notified as soon as we launch.` : content =`Welcome ${user.user_metadata.full_name}. Kindly check your email for further steps.`}
+            <p>{content}</p>
             <Socials>
             {settings && settings.external.google &&   <FaGoogle onClick={() => acceptInviteExternalUrl('google', user.token)}/>}
             {settings && settings.external.github &&   <FaGithub onClick={() => acceptInviteExternalUrl('github', user.token)}/>}
