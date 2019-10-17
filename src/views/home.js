@@ -166,9 +166,9 @@ const Home = () => {
             }
             {isLoggedIn &&
             <div>
-              {user.role === 'interested'? content = `Thank you ${user.user_metadata.full_name} for checking in. We will get you notified as soon as we launch.` : content =`Welcome ${user.user_metadata.full_name}. Kindly check your email for further steps.`}
-            <p>{content}</p>
+              {user.role === 'interested'? <p>Thank you {user.user_metadata.full_name} for checking in. We will get you notified as soon as we launch.</p> : content =<p>Welcome {user.user_metadata.full_name}. Kindly check your email for further steps.</p>}
             <Socials>
+              <p>INVITE A DEVELOPER</p>
             {settings && settings.external.google &&   <FaGoogle onClick={() => acceptInviteExternalUrl('google', user.token)}/>}
             {settings && settings.external.github &&   <FaGithub onClick={() => acceptInviteExternalUrl('github', user.token)}/>}
             {settings && settings.external.bitbucket &&   <FaBitbucket onClick={() => acceptInviteExternalUrl('bitbucket',user.token)}/>}
@@ -180,7 +180,7 @@ const Home = () => {
       <Icon>
         {isLoggedIn && <div>
           {console.log(user)}
-          <span>`Hello ${user.user_metadata.full_name}`</span>
+          <span>Hello {user.user_metadata.full_name}</span>
           <button onClick={logoutUser}>Logout</button>
         </div>}
 
