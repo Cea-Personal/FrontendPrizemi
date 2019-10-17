@@ -25,7 +25,7 @@ exports.handler = async (event, context) => {
       from: sender,
       to: user.email,
       subject: "Welcome to PrizeMi",
-      text: 'Thank you for your interest in PrizeMi. ;
+      text: 'Thank you for your interest in PrizeMi'
     });
 
     user.role = "interested";
