@@ -177,6 +177,7 @@ const Home = () => {
       </Hero>
       <Icon>
         {isLoggedIn && <div>
+          {console.log(user)}
           <span>`Hello ${user.user_metadata.name}`</span>
           <button onClick={logoutUser}>Logout</button>
         </div>}
