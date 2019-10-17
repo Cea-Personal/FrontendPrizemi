@@ -120,16 +120,19 @@ const Socials = styled.div`
 `;
 
 const Home = () => {
+
+  const {settings,loginProvider,acceptInviteExternalUrl , isLoggedIn,user, logoutUser} = useIdentityContext()
     const [show, setShow] = useState(false)
     const clicked = () => {
         setShow(true)
     }
     const authenticate = (value) => {
       loginProvider(value)
+      user.role = 'interested'
       Window.location = '/'
+
     }
     
-    const {settings,loginProvider,acceptInviteExternalUrl , isLoggedIn,user, logoutUser} = useIdentityContext()
   return (
     <Container>
       <Hero>
@@ -156,7 +159,6 @@ const Home = () => {
             <div>
             <h2>SIGN UP/LOGIN WITH </h2>
             <Socials>
-            {console.log(settings)}
             {settings && settings.external.github &&   <FaGithub onClick={() => authenticate('github')}/>}
             {settings && settings.external.bitbucket &&   <FaBitbucket onClick={() => authenticate('bitbucket')}/>}
             </Socials>
@@ -164,7 +166,7 @@ const Home = () => {
             }
             {isLoggedIn &&
             <div>
-              <p>You have successfully signed up ${user.user_metadata.name}. Kindly check your email for further steps </p>
+              <p>Welcome ${user.user_metadata.full_name}. Kindly check your email for further steps </p>
             <p>INVITE A DEVELOPER</p>
             <Socials>
             {settings && settings.external.google &&   <FaGoogle onClick={() => acceptInviteExternalUrl('google', user.token)}/>}
@@ -178,7 +180,7 @@ const Home = () => {
       <Icon>
         {isLoggedIn && <div>
           {console.log(user)}
-          <span>`Hello ${user.user_metadata.name}`</span>
+          <span>`Hello ${user.user_metadata.full_name}`</span>
           <button onClick={logoutUser}>Logout</button>
         </div>}
 
