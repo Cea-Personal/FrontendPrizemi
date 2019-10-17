@@ -154,7 +154,7 @@ const Home = () => {
      {show && <Sign>
             {!isLoggedIn &&
             <div>
-            <h2>SIGN UP WITH </h2>
+            <h2>SIGN UP/LOGIN WITH </h2>
             <Socials>
             {console.log(settings)}
             {settings && settings.external.github &&   <FaGithub onClick={() => authenticate('github')}/>}
