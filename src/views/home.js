@@ -128,8 +128,8 @@ const Home = () => {
       await loginProvider(value)
       Window.location = '/'
     }
-    const invite = async (value ) => {
-      await acceptInviteExternalUrl(value , user.token.access_token)
+    const invite = (value ) => {
+      console.log(acceptInviteExternalUrl(value , user.token.access_token))
     }
     if (isConfirmedUser) user.role = 'interested'
     
