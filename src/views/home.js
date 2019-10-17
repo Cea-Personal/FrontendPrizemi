@@ -129,7 +129,7 @@ const Home = () => {
       Window.location = '/'
     }
     
-    const {settings,loginProvider,acceptInviteExternalUrl , isLoggedIn, isConfirmedUser ,user, logoutUser} = useIdentityContext()
+    const {settings,loginProvider,acceptInviteExternalUrl , isLoggedIn,user, logoutUser} = useIdentityContext()
   return (
     <Container>
       <Hero>
@@ -164,18 +164,23 @@ const Home = () => {
             }
             {isLoggedIn &&
             <div>
-              <p>You have signed up on PrizeMi. Kindly check your email for further steps</p>
+              <p>You have successfully signed up ${user.getUserData.name}. Kindly check your email for further steps </p>
             <p>INVITE A DEVELOPER</p>
             <Socials>
-            {settings && settings.external.google &&   <FaGoogle onClick={() => acceptInviteExternalUrl('google')}/>}
-            {settings && settings.external.github &&   <FaGithub onClick={() => acceptInviteExternalUrl('github')}/>}
-            {settings && settings.external.bitbucket &&   <FaBitbucket onClick={() => acceptInviteExternalUrl('bitbucket')}/>}
+            {settings && settings.external.google &&   <FaGoogle onClick={() => acceptInviteExternalUrl('google', user.token)}/>}
+            {settings && settings.external.github &&   <FaGithub onClick={() => acceptInviteExternalUrl('github', user.token)}/>}
+            {settings && settings.external.bitbucket &&   <FaBitbucket onClick={() => acceptInviteExternalUrl('bitbucket',user.token)}/>}
             </Socials>
             </div>
             }
         </Sign>}
       </Hero>
       <Icon>
+        {isLoggedIn && <div>
+          <span>Hello ${user.getUserData.name}</span>
+          <button onClick={logoutUser}>Logout</button>
+        </div>}
+
       </Icon>
     </Container>
   );
