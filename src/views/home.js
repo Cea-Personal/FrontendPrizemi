@@ -2,7 +2,8 @@ import React, {useState} from "react";
 import styled from "styled-components";
 import Typed from "react-typed";
 import background from "../assests/picture.svg";
-import {FaGithub, FaBitbucket } from 'react-icons/fa'
+import { useIdentityContext } from "react-netlify-identity"
+import {FaGithub, FaBitbucket, FaGoogle } from 'react-icons/fa'
 
 const Container = styled.div`
   width: 100%;
@@ -105,6 +106,12 @@ const Home = () => {
     const clicked = () => {
         setShow(true)
     }
+    const authenticate = (value) => {
+      loginProvider(value)
+      Window.location = '/'
+    }
+    
+    const {settings,loginProvider,acceptInviteExternalUrl , isLoggedIn, isConfirmedUser ,user, logoutUser} = useIdentityContext()
   return (
     <Container>
       <Hero>
@@ -127,11 +134,27 @@ const Home = () => {
           />
         </Details>
      {show && <Sign>
+            {!isLoggedIn &&
+            <div>
             <h2>SIGN UP WITH </h2>
             <Socials>
-            <FaGithub />
-            <FaBitbucket />
+            {console.log(settings)}
+            {settings && settings.external.github &&   <FaGithub onClick={() => authenticate('github')}/>}
+            {settings && settings.external.bitbucket &&   <FaBitbucket onClick={() => authenticate('bitbucket')}/>}
             </Socials>
+            </div>
+            }
+            {isLoggedIn &&
+            <div>
+              <p>You have signed up on PrizeMi. Kindly check your email for further steps</p>
+            <p>INVITE A DEVELOPER</p>
+            <Socials>
+            {settings && settings.external.google &&   <FaGoogle onClick={() => acceptInviteExternalUrl('google')}/>}
+            {settings && settings.external.github &&   <FaGithub onClick={() => acceptInviteExternalUrl('github')}/>}
+            {settings && settings.external.bitbucket &&   <FaBitbucket onClick={() => acceptInviteExternalUrl('bitbucket')}/>}
+            </Socials>
+            </div>
+            }
         </Sign>}
       </Hero>
       <Icon>
