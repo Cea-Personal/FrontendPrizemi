@@ -129,15 +129,14 @@ const Home = () => {
       Window.location = '/'
     }
     const invite = (value ) => {
-      console.log(acceptInviteExternalUrl(value , user.token.access_token))
+
     }
-    if (isConfirmedUser) user.role = 'interested'
     
+   
   return (
     <Container>
       <Hero>
         <Details>
-          {console.log(user)}
         <h1>PrizeMi </h1>
           <Typed
             strings={[
@@ -182,7 +181,7 @@ const Home = () => {
       <Icon>
         {isLoggedIn && <div>
           {console.log(user)}
-          <span>Hello {user.user_metadata.full_name}</span>
+          <span>Hello </span>
           <button onClick={logoutUser}>Logout</button>
         </div>}
 
