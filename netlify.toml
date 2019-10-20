@@ -5,4 +5,4 @@
 
 
   # Directory with the serverless Lambda functions to deploy to AWS.
-  functions = "PrizeMi/src/functions"
+  functions = "./src/functions"
