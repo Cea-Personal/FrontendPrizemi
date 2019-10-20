@@ -181,7 +181,7 @@ const Home = () => {
       <Icon>
         {isLoggedIn && <div>
           {console.log(user)}
-          <span>Hello </span>
+          <span>Hello {user.user_metadata.full_name.split('')[0]}</span>
           <button onClick={logoutUser}>Logout</button>
         </div>}
 
