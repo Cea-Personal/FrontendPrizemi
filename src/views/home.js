@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import styled from "styled-components";
 import Typed from "react-typed";
+import axios from 'axios';
 import background from "../assests/picture.svg";
 import { useIdentityContext } from "react-netlify-identity"
 import {FaGithub, FaBitbucket, FaGoogle } from 'react-icons/fa'
@@ -126,6 +127,7 @@ const Home = () => {
     }
     const authenticate = async(value) => {
       await loginProvider(value)
+      await axios.get('/.netlify/functions/send-mail')
       Window.location = '/'
     }
     const invite = (value ) => {
