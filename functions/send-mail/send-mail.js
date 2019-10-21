@@ -1,0 +1,35 @@
+
+const nodemailer= require("nodemailer");
+const dotenv=require('dotenv');
+dotenv.config()
+const sender = process.env.EMAIL;
+const host = process.env.host;
+
+
+exports.handler = async (event, context) => {
+  try {
+    const { user } = context.clientContext;
+    const transporter = nodemailer.createTransport({
+      host,
+      auth: {
+        type: "OAuth2",
+        user: "youremail@gmail.com",
+        serviceClient:process.env.CLIENTID,
+        privateKey:process.env.PRIVATE ,                            
+      }
+    });
+
+    await transporter.sendMail({
+      from: sender,
+      to: 'ogbonna.basil3@gmail.com' ,
+      subject: "Welcome to PrizeMi",
+      text: 'Thank you for your interest in PrizeMi' ,
+    });
+    user.role = "interested";
+    return {statusCode: 200, body: 'Mail sent'}
+
+  } catch (err) {
+    return {statusCode: 500,
+    body: `here ,${err}`};
+  }
+};
