@@ -13,15 +13,16 @@ exports.handler = async (event, context) => {
       host,
       auth: {
         type: "OAuth2",
-        user: "youremail@gmail.com",
-        serviceClient:process.env.CLIENTID,
-        privateKey:process.env.PRIVATE ,                            
+        user: `${sender}`,
+        serviceClient:`${process.env.CLIENTID}`,
+        privateKey:`${process.env.PRIVATE}`
+                             
       }
     });
 
     await transporter.sendMail({
-      from: sender,
-      to: 'ogbonna.basil3@gmail.com' ,
+      from: `${sender}`,
+      to: `${user.email}` ,
       subject: "Welcome to PrizeMi",
       text: 'Thank you for your interest in PrizeMi' ,
     });
@@ -30,6 +31,6 @@ exports.handler = async (event, context) => {
 
   } catch (err) {
     return {statusCode: 500,
-    body: `here ,${err}`};
+    body: `${err}`};
   }
 };
