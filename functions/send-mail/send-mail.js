@@ -10,7 +10,7 @@ exports.handler = async (event, context) => {
   try {
     const { user } = context.clientContext;
     const transporter = nodemailer.createTransport({
-      host:`${host}`,
+      host,
       auth: {
         type: "OAuth2",
         user: `${sender}`,
