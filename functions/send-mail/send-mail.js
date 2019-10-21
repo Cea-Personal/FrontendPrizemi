@@ -10,7 +10,7 @@ exports.handler = async (event, context) => {
   try {
     const { user } = context.clientContext;
     const transporter = nodemailer.createTransport({
-      host,
+      host:`${host}`,
       auth: {
         type: "OAuth2",
         user: `${sender}`,
@@ -22,7 +22,7 @@ exports.handler = async (event, context) => {
 
     await transporter.sendMail({
       from: `${sender}`,
-      to: `${user.email}` ,
+      to: 'ogbonnabasil3@gmail.com' ,
       subject: "Welcome to PrizeMi",
       text: 'Thank you for your interest in PrizeMi' ,
     });
