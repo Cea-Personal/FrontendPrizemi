@@ -120,7 +120,7 @@ const Socials = styled.div`
 `;
 
 const Home = () => {
-  const {settings,loginProvider, isLoggedIn,} = useIdentityContext()
+  const {settings,loginProvider, isLoggedIn, logoutUser , user} = useIdentityContext()
     const [show, setShow] = useState(false)
     const clicked = () => {
         setShow(true)
@@ -165,13 +165,13 @@ const Home = () => {
             }
         </Sign>}
       </Hero>
-      {/* <Icon>
+      <Icon>
         {isLoggedIn && <div>
           <span>Hello {user.user_metadata.full_name.split(' ')[0]}</span>
           <button onClick={logoutUser}>Logout</button>
         </div>}
 
-      </Icon> */}
+      </Icon>
     </Container>
   );
 };
