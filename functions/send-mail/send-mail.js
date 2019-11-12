@@ -3,7 +3,7 @@ const nodemailer= require("nodemailer");
 const dotenv=require('dotenv');
 dotenv.config()
 const sender = process.env.EMAIL;
-const host = process.env.host;
+
 
 
 exports.handler = async (event, context) => {
@@ -31,6 +31,6 @@ exports.handler = async (event, context) => {
 
   } catch (err) {
     return {statusCode: 500,
-    body: `${err}`};
+    body: `${err.toString()}`};
   }
 };

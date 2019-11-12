@@ -120,7 +120,7 @@ const Socials = styled.div`
 `;
 
 const Home = () => {
-  const {settings,loginProvider,acceptInviteExternalUrl , isLoggedIn,user, logoutUser , isConfirmedUser } = useIdentityContext()
+  const {settings,loginProvider,acceptInviteExternalUrl , isLoggedIn,user, logoutUser } = useIdentityContext()
     const [show, setShow] = useState(false)
     const clicked = () => {
         setShow(true)
@@ -168,14 +168,8 @@ const Home = () => {
             }
             {isLoggedIn &&
             <div>
-              {user.role === 'interested'? <p>Thank you {user.user_metadata.full_name} for checking in. We will get you notified as soon as we launch.</p> : <p>Welcome {user.user_metadata.full_name}. Kindly check your email for further steps.</p>}
-            <Socials>
-              <p>INVITE A DEVELOPER</p>
-            {console.log(settings.external)}
-            {settings && settings.external.google &&   <FaGoogle onClick={() => invite('google')}/>}
-            {settings && settings.external.github &&   <FaGithub onClick={() => invite('github')}/>}
-            {settings && settings.external.bitbucket &&   <FaBitbucket onClick={() => invite('bitbucket')}/>}
-            </Socials>
+              
+      
             </div>
             }
         </Sign>}
