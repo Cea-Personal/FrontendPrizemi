@@ -9,4 +9,4 @@
 
   [[redirects]]
   from = "/#"
-  to = "/"
+  to = "/dashboard"
