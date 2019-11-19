@@ -135,6 +135,7 @@ const Home = () => {
   return (
     <Container>
       <Hero>
+        
         <Details>
         <h1>PrizeMi </h1>
           <Typed
