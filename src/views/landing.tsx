@@ -142,6 +142,7 @@ const Home = () => {
   const authenticate = async (value: providers) => {
     await loginProvider(value)
     const isSignedUp = user && atob(user.role).split('_')[1]
+    console.log(isSignedUp)
     !isSignedUp && await axios.post('/.netlify/functions/send-mail', emailMessage)
   }
 
