@@ -23,7 +23,6 @@ const App = (props:Props) => {
 
 const [loginState, loginActions] = useReducer(loginReducer, authContext.state)
 const [themeState , themeActions] = useReducer(themeReducer, themeContext.state)
-console.log(loginState, themeState, loginActions,themeActions)
 
   return (
     <ThemeContext.Provider value={{state:themeState , dispatch:themeActions}}>÷

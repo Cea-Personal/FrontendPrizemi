@@ -141,6 +141,7 @@ const Home = () => {
   })
   const authenticate = async (value: providers) => {
     await loginProvider(value)
+    console.log('here')
     const isSignedUp = user && atob(user.role).split('_')[1]
     console.log(isSignedUp)
     !isSignedUp && await axios.post('/.netlify/functions/send-mail', emailMessage)
@@ -161,7 +162,7 @@ const Home = () => {
               `<p>Set your price rate based on features with PrizeMi</p>`,
               `<p>A feature-based price management system for freelance software developers </p>`
             ]}
-            typeSpeed={60}
+            typeSpeed={40}
             fadeOut={true}
             fadeOutDelay={100}
             startDelay={1000}
