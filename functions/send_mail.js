@@ -9,29 +9,23 @@ const pass = process.env.PASSWORD;
 
 exports.handler = async (event, context) => {
   try {
-    const body = JSON.parse(event.body)
+    const body = JSON.parse(event.body).name
     const { user } = context.clientContext;
     const transporter = nodemailer.createTransport(smtpTransport({
       service:"gmail",
-    //   host:`${process.env.host}`,
       auth: {
           user: sender,
           pass,
-        // type: "OAuth2",
-        // user: `${sender}`,
-        // serviceClient:`${process.env.CLIENTID}`,
-        // privateKey:`${process.env.PRIVATE}`
-                             
       }
     }));
 
     await transporter.sendMail({
       from: `${sender}`,
-      to: user && user.email ,
+      to: user && user.email || 'ogbonnabasil3@gmail.com' ,
       subject: "Welcome to PrizeMi",
       html: body,
     });
-    user.role = btoa(`${user.email}_signed-up`);
+    user.role = Buffer.from(`${user.email}_true`).toString('base64')
     return {statusCode: 200, body: 'Mail sent'}
 
   } catch (err) {

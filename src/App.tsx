@@ -32,7 +32,7 @@ const [themeState , themeActions] = useReducer(themeReducer, themeContext.state)
           <AppContainer theme={theme.state.isLight}>
             <Route exact path="/">
               <Landing/>
-              {/* {isLoggedIn ? <Redirect to="/dashboard" /> : <Landing />} */}
+              {/* {isLoggedIn ? <Redirect to={currentPage} /> : <Landing />} */}
             </Route>
           </AppContainer>
     </LoginContext.Provider>
