@@ -17,6 +17,7 @@
     "netlify-cli": "^2.19.2",
     "netlify-identity-widget": "^1.5.5",
     "nodemailer": "^6.3.1",
+    "nodemailer-smtp-transport": "^2.7.4",
     "pcln-design-system": "^2.7.0-beta.6",
     "prop-types": "^15.7.2",
     "react": "^16.8.6",

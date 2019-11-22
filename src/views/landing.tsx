@@ -3,7 +3,7 @@ import styled from "styled-components";
 import Typed from "react-typed";
 import axios from 'axios';
 import Splash from "./splash";
-import {ThemeContext , LoginContext} from "../state/context"
+import { ThemeContext, LoginContext } from "../state/context"
 
 import background from "../assests/picture.svg";
 import { useIdentityContext } from "react-netlify-identity";
@@ -127,15 +127,21 @@ enum providers {
   Bitbucket = "bitbucket"
 }
 const Home = () => {
-  const {settings,loginProvider, isLoggedIn, logoutUser , user} = useIdentityContext()
+  const { settings, loginProvider, isLoggedIn, logoutUser, user } = useIdentityContext()
   const [show, setShow] = useState(false)
   const clicked = () => {
     setShow(true)
   }
-   const loadingContext = useContext(LoginContext)
-  const authenticate = async (value:providers) => {
+  const loadingContext = useContext(LoginContext)
+  const emailMessage = JSON.stringify({
+    name: user && user.user_metadata.full_name,
+    message: `Welcome to PrizeMi
+    <p>We are pleased to have you as part of elite software developers who pride themselves in doing the job and getting the right pay for it.</p>
+    <p>Get Started on PrizeMi</p>`
+  })
+  const authenticate = async (value: providers) => {
     await loginProvider(value)
-    await axios.get('/.netlify/functions/send-mail')
+    user && user.role !="" && await axios.post('/.netlify/functions/send-mail', emailMessage)
   }
 
 
