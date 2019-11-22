@@ -1,10 +1,13 @@
-import React, {useState} from "react";
+import React, { useState, useContext } from "react";
 import styled from "styled-components";
 import Typed from "react-typed";
 import axios from 'axios';
+import Splash from "./splash";
+import {ThemeContext , LoginContext} from "../state/context"
+
 import background from "../assests/picture.svg";
 import { useIdentityContext } from "react-netlify-identity";
-import {FaGithub, FaBitbucket } from 'react-icons/fa'
+import { FaGithub, FaBitbucket } from 'react-icons/fa'
 const Container = styled.div`
   width: 100%;
   height: 100vh;
@@ -12,7 +15,7 @@ const Container = styled.div`
   background-color: white;
   @media(max-width:800px){
     flex-direction:column;
-    
+
   }
   @media(max-height:450px){
       flex-direction:row;
@@ -119,25 +122,30 @@ const Socials = styled.div`
        color: rgb(30, 20, 93);
 `;
 
+enum providers {
+  Github = "github",
+  Bitbucket = "bitbucket"
+}
 const Home = () => {
   const {settings,loginProvider, isLoggedIn, logoutUser , user} = useIdentityContext()
-    const [show, setShow] = useState(false)
-    const clicked = () => {
-        setShow(true)
-    }
-    const authenticate = async(value) => {
-      await loginProvider(value)
-      await axios.get('/.netlify/functions/send-mail')
-    }
+  const [show, setShow] = useState(false)
+  const clicked = () => {
+    setShow(true)
+  }
+   const loadingContext = useContext(LoginContext)
+  const authenticate = async (value:providers) => {
+    await loginProvider(value)
+    await axios.get('/.netlify/functions/send-mail')
+  }
 
-    
-   
+
+
   return (
     <Container>
+      {loadingContext.state.loading && <Splash />}
       <Hero>
-        
         <Details>
-        <h1>PrizeMi </h1>
+          <h1>PrizeMi </h1>
           <Typed
             strings={[
               `<p>Get your client needs <p>`,
@@ -145,33 +153,33 @@ const Home = () => {
               `<p>Set your price rate based on features with PrizeMi</p>`,
               `<p>A feature-based price management system for freelance software developers </p>`
             ]}
-            typespeed={200}
+            typeSpeed={60}
             fadeOut={true}
             fadeOutDelay={100}
-            //   backDelay={200}
             startDelay={1000}
             showCursor={false}
             onComplete={clicked}
           />
         </Details>
-     {show && <Sign>
-            {!isLoggedIn &&
+        {show && <Sign>
+          {!isLoggedIn &&
             <div>
-            <h2>SIGN UP/LOGIN WITH </h2>
-            <Socials>
-            {settings && settings.external.github &&   <FaGithub onClick={() => authenticate('github')}/>}
-            {settings && settings.external.bitbucket &&   <FaBitbucket onClick={() => authenticate('bitbucket')}/>}
-            </Socials>
+              <h2>SIGN UP/LOGIN WITH </h2>
+              <Socials>
+                {settings && settings.external.github && <FaGithub onClick={() => authenticate(providers.Github)} />}
+                {settings && settings.external.bitbucket && <FaBitbucket onClick={() => authenticate(providers.Bitbucket)} />}
+              </Socials>
             </div>
-            }
+          }
         </Sign>}
       </Hero>
       <Icon>
-        {isLoggedIn && <div>
-          <span>Hello {user.user_metadata.full_name.split(' ')[0]}</span>
-          <button onClick={logoutUser}>Logout</button>
-        </div>}
-
+        {isLoggedIn && user &&
+          <div>
+            <span>
+              Hello {user.user_metadata.full_name.split(' ')[0]}</span>
+            <button onClick={logoutUser}>Logout</button>
+          </div>}
       </Icon>
     </Container>
   );

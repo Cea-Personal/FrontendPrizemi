@@ -1,5 +1,5 @@
-import React from 'react';
-import styled from 'styled-components';
+import React, {useState} from 'react';
+import styled from "styled-components";
 import Icon from '../assests/splash.svg';
 
 const Splash = () => {
