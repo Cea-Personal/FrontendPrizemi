@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { LoginContext } from '../state/context';
 import { NavLink } from 'react-router-dom';
 import { useIdentityContext } from "react-netlify-identity";
+import {FaUser} from 'react-icons/fa'
 import styled from 'styled-components';
 import logo from '../assests/logo.svg';
 import Modal from './modal'
@@ -20,7 +21,7 @@ const Navbar = () => {
                 <NavLink to='/contact'>Contact</NavLink>
             </Actions>
             {!isLoggedIn && <Button isInactive={UseLoginContext.state.inactive} onClick={() => UseLoginContext.dispatch({ type: 'open', payload: 'Login to PrizeMi' })}>Log In</Button>}
-            {!isLoggedIn && <Button onClick={logoutUser}>Log Out</Button>}
+            {isLoggedIn && <Button onClick={logoutUser}>Log Out</Button>}
             {UseLoginContext.state.isModalOpen && <Modal />}
             {/* <Icon>
         {isLoggedIn && user &&
