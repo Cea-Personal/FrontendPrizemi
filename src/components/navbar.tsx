@@ -1,26 +1,28 @@
-import React,{useContext} from 'react';
-import {LoginContext} from '../state/context';
-import {NavLink} from 'react-router-dom';
+import React, { useContext } from 'react';
+import { LoginContext } from '../state/context';
+import { NavLink } from 'react-router-dom';
+import { useIdentityContext } from "react-netlify-identity";
 import styled from 'styled-components';
 import logo from '../assests/logo.svg';
 import Modal from './modal'
 
 const Navbar = () => {
     const UseLoginContext = useContext(LoginContext)
-
+    const { isLoggedIn, logoutUser, user } = useIdentityContext()
     return (
         <Container>
-            <Logo isInactive = {UseLoginContext.state.inactive}>
-                <img src={logo} alt='logo'/>
+            <Logo isInactive={UseLoginContext.state.inactive}>
+                <img src={logo} alt='logo' />
                 <p>PrizeMi</p>
             </Logo>
-            <Actions isInactive = {UseLoginContext.state.inactive}>
+            <Actions isInactive={UseLoginContext.state.inactive}>
                 <NavLink to='/features'>Features</NavLink>
                 <NavLink to='/contact'>Contact</NavLink>
             </Actions>
-            <Button  isInactive = {UseLoginContext.state.inactive} onClick={()=> UseLoginContext.dispatch({type:'open', payload:'Login to PrizeMi'})}>Sign In</Button> 
+            {!isLoggedIn && <Button isInactive={UseLoginContext.state.inactive} onClick={() => UseLoginContext.dispatch({ type: 'open', payload: 'Login to PrizeMi' })}>Log In</Button>}
+            {!isLoggedIn && <Button onClick={logoutUser}>Log Out</Button>}
             {UseLoginContext.state.isModalOpen && <Modal />}
-              {/* <Icon>
+            {/* <Icon>
         {isLoggedIn && user &&
           <div>
             <span>
