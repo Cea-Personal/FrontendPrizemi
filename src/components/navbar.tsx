@@ -1,21 +1,25 @@
-import React from 'react';
+import React,{useContext} from 'react';
+import {LoginContext} from '../state/context';
+import {NavLink} from 'react-router-dom';
 import styled from 'styled-components';
 import logo from '../assests/logo.svg';
 import Modal from './modal'
 
 const Navbar = () => {
+    const UseLoginContext = useContext(LoginContext)
+
     return (
         <Container>
-            <Logo>
+            <Logo isInactive = {UseLoginContext.state.inactive}>
                 <img src={logo} alt='logo'/>
                 <p>PrizeMi</p>
             </Logo>
-            <Actions>
-                <p>Features</p>
-                <p>Contact</p>
+            <Actions isInactive = {UseLoginContext.state.inactive}>
+                <NavLink to='/features'>Features</NavLink>
+                <NavLink to='/contact'>Contact</NavLink>
             </Actions>
-            <Button>Sign In</Button>
-            <Modal />
+            <Button  isInactive = {UseLoginContext.state.inactive} onClick={()=> UseLoginContext.dispatch({type:'open', payload:'Login to PrizeMi'})}>Sign In</Button> 
+            {UseLoginContext.state.isModalOpen && <Modal />}
               {/* <Icon>
         {isLoggedIn && user &&
           <div>
@@ -33,8 +37,9 @@ export default Navbar
 const Container = styled.div`
     margin-top:5%; 
     height:10vh;
+    z-index:1;
     margin-left:12%;
-    background-color:inherit;
+    background-color:initial;
     width:72%;
     display:flex;
     justify-content:center;
@@ -45,6 +50,8 @@ const Container = styled.div`
 const Logo = styled.div`
     display:flex;
     justify-content:space-evenly;
+    ${props => (props.isInactive && `pointer-events: none`)};
+    ${props => (props.isInactive && `opacity: 0.7`)};
     align-items:center;
     width:30%;
     height:100%;
@@ -65,15 +72,23 @@ const Actions = styled.div`
     justify-content:space-evenly;
     width:50%;
     align-items:center;
+    ${props => (props.isInactive && `pointer-events: none`)};
+    ${props => (props.isInactive && `opacity: 0.7`)};
     margin-left:20%;
     color: #091E42;
     font-weight:bold;
     font-size:1.2rem;
+    a{
+        text-decoration:none;
+        color: #091E42;
+    }
 `;
 const Button = styled.button`
     outline:none;
     margin-top:1.5%;
     border:none;
+    ${props => (props.isInactive && `pointer-events: none`)};
+    ${props => (props.isInactive && `opacity: 0.7`)};
     background-color:#ffffff;
     font-weight:bold;
     font-size:1rem;

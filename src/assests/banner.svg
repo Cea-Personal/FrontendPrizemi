@@ -6,7 +6,7 @@
            from { fill: #091E42; }
              to { fill: #6554C0; }
         }
-         .addeffects { animation: y .2s ease-in-out alternate 10;animation-iteration-count:1;animation-delay:1s; animation-fill-mode: forwards; }
+         .addeffects { animation: y .2s ease-in-out alternate 10;animation-iteration-count:1;animation-delay:1.2s; animation-fill-mode: forwards; }
 
         @keyframes y {
            from { stroke: none;visibility:hidden;}
@@ -15,21 +15,21 @@
         }
     
         .moveUp{
-            animation: l 2s ease-in-out alternate 10;animation-iteration-count:1; animation-delay:0.7s; animation-fill-mode: forwards; 
+            animation: l 2s ease-in-out alternate 10;animation-iteration-count:1; animation-delay:1.2s; animation-fill-mode: forwards; 
         }
                @keyframes l {
            from { visibility: hidden; }
              to { visibility: visible;}
         }
                .hide{
-            animation: b ease-in-out alternate 10;animation-iteration-count:1;animation-delay:0.5s; animation-fill-mode: forwards; 
+            animation: b ease-in-out alternate 10;animation-iteration-count:1;animation-delay:1s; animation-fill-mode: forwards; 
         }
                @keyframes b {
            from { visibility: visible; }
              to { visibility: hidden;}
         }
                .open{
-            animation: j ease-in-out alternate 10;animation-iteration-count:1;animation-delay:1.2s; animation-fill-mode: forwards; 
+            animation: j ease-in-out alternate 10;animation-iteration-count:1;animation-delay:1.5s; animation-fill-mode: forwards; 
         }
                @keyframes j {
            from { visibility: visible; }

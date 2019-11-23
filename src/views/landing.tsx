@@ -1,7 +1,32 @@
-import React, { useState, useContext } from "react";
+import React, { useContext,} from "react";
+import {LoginContext} from '../state/context';
 import styled from "styled-components";
 import banner from '../assests/banner.svg'
 import Navbar from '../components/navbar';
+
+
+
+const Home = () => {
+  const UseLoginContext = useContext(LoginContext)
+  return (
+    <Container >
+            <Navbar />
+      <Hero isInactive= {UseLoginContext.state.inactive}>
+  
+        <Details>
+          <p>
+            Feature-based price management for developers
+        </p>
+          <Button onClick={()=> UseLoginContext.dispatch({type:'open',payload:'Signup on PrizeMi'})}>Get Started </Button>
+        </Details>
+      
+      </Hero>
+    </Container>
+  );
+};
+
+export default Home;
+
 const Container = styled.div`
   width: 100%;
   height: 100vh;
@@ -21,6 +46,9 @@ const Hero = styled.div`
   height: 100%;
   display: flex;
   background:url(${banner});
+  ${props => (props.isInactive && `overflow: hidden`)};
+  ${props => (props.isInactive && `pointer-events: none`)};
+  ${props => (props.isInactive && `opacity: 0.7`)};
   background-repeat:no-repeat;
   background-size:95%;
   flex-direction: column;
@@ -106,32 +134,3 @@ const Socials = styled.div`
        margin:0 3%;
        color: rgb(30, 20, 93);
 `;
-
-
-const Home = () => {
-
-  const [show, setShow] = useState(false)
-  const clicked = () => {
-    setShow(true)
-  }
-
-
-
-
-  return (
-    <Container>
-      <Hero>
-        <Navbar />
-        <Details>
-          <p>
-            Feature-based price management for developers
-        </p>
-          <Button>Get Started </Button>
-        </Details>
-      
-      </Hero>
-    </Container>
-  );
-};
-
-export default Home;

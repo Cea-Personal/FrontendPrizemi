@@ -1,10 +1,11 @@
 import {dispatchType} from './context'
 
-type AppState ={
+type AppState = {
+    isModalOpen:boolean,
     loading: boolean ,
-    isLoggedIn: boolean,
-    isSignedUp: boolean,
+    action:string
     error: boolean,
+    inactive:boolean,
 }
 type themeState ={
     loading:boolean,
@@ -29,29 +30,28 @@ export const themeReducer = (reducerState:themeState, actions: dispatchType):the
 }
 export const loginReducer = (reducerState:AppState, actions : dispatchType):AppState => {
     switch (actions.type) {
+        case 'open':
+            return {
+                ...reducerState,
+                isModalOpen:true,
+                action: actions.payload,
+                inactive:true,
+            }
+        case 'close':{
+            return{
+                ...reducerState,
+                isModalOpen:false,
+                inactive:false,
+            }
+        }
         case 'loading':
             return {
                 ...reducerState,
                 loading: true
             }
-        case 'signup':
-            return {
-                ...reducerState,
-                isSignedUp: true,
-                loading: false,
-            }
-        case 'login':
-            return {
-                ...reducerState,
-                isLoggedIn: true,
-                loading: false,
-
-            }
         case 'failed':
             return {
                 ...reducerState,
-                isLoggedIn: false,
-                isSignedUp: false,
                 loading: false,
                 error: true
             }

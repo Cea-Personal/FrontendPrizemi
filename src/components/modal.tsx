@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useContext} from 'react';
 import styled from 'styled-components';
 import { useIdentityContext } from "react-netlify-identity";
 import { LoginContext } from "../state/context";
@@ -12,6 +12,7 @@ enum providers {
   Bitbucket = "bitbucket"
 }
 const Modal = () => {
+  const UseLoginContext = useContext(LoginContext)
   const { settings, loginProvider, isLoggedIn, logoutUser, user } = useIdentityContext()
   const emailMessage = JSON.stringify({
     name: user && user.user_metadata.full_name.split(' ')[0],
@@ -20,19 +21,24 @@ const Modal = () => {
         <p>Get Started on PrizeMi</p>`
   })
   const authenticate = async (value: providers) => {
+    await UseLoginContext.dispatch({type:'loading'})
     await loginProvider(value)
     const isSignedUp = user && Buffer.from(user.role, 'base64').toString('utf8').split('_')[1]
     !isSignedUp && await axios.post('/.netlify/functions/send_mail', emailMessage)
+    // trigger a toast for successfully signed up and close the modal
   }
+
+  
   return (
     <Container>
       <Heading> 
-        <p>Signup / Login </p>
-        <FaTimes style={{fontSize:'1.5rem' , color:'#ffffff', margin:'5px'}} />
+        <p>{UseLoginContext.state.action}</p>
+        <FaTimes style={{fontSize:'1.5rem' , color:'#ffffff', margin:'5px'}} onClick={()=>UseLoginContext.dispatch({type:'close'})}/>
       </Heading>
       <Actions>
-        {settings && settings.external.github && <Icon><FaGithub onClick={() => authenticate(providers.Github)} /><p>Github</p></Icon>}
-        {settings && settings.external.bitbucket && <Icon><FaBitbucket onClick={() => authenticate(providers.Bitbucket)} /><p>Bitbucket</p></Icon>}
+        {!UseLoginContext.state.loading && settings && settings.external.github && <Icon><FaGithub onClick={() => authenticate(providers.Github)} /><p>Github</p></Icon>}
+        {!UseLoginContext.state.loading && settings && settings.external.bitbucket && <Icon><FaBitbucket onClick={() => authenticate(providers.Bitbucket)} /><p>Bitbucket</p></Icon>}
+        {UseLoginContext.state.loading && <p> Loading ...</p>}
       </Actions>
     </Container>
   )
@@ -42,7 +48,7 @@ export default Modal
 const Container = styled.div`
   width:25%;
   position:fixed;
-  z-index:+3;
+  z-index:+2;
   top:30%;
   border-radius:10px;
   height:30vh;
