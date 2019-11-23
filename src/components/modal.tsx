@@ -23,6 +23,7 @@ const Modal = () => {
   const authenticate = async (value: providers) => {
     await UseLoginContext.dispatch({type:'loading'})
     await loginProvider(value)
+    console.log(user)
     const isSignedUp = user && Buffer.from(user.role, 'base64').toString('utf8').split('_')[1]
     !isSignedUp && await axios.post('/.netlify/functions/send_mail', emailMessage)
     // trigger a toast for successfully signed up and close the modal
