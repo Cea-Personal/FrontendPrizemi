@@ -5,7 +5,8 @@ import axios from 'axios';
 import { ThemeContext, LoginContext } from "../state/context";
 import banner from '../assests/banner.svg'
 import { useIdentityContext } from "react-netlify-identity";
-import { FaGithub, FaBitbucket } from 'react-icons/fa'
+import { FaGithub, FaBitbucket } from 'react-icons/fa';
+import Navbar from '../components/navbar';
 const Container = styled.div`
   width: 100%;
   height: 100vh;
@@ -22,14 +23,11 @@ const Container = styled.div`
 `;
 const Hero = styled.div`
   width: 100%;
-  margin: 0%;
   height: 100%;
   display: flex;
   background:url(${banner});
   background-repeat:no-repeat;
   background-size:100%;
-  align-items: center;
-  justify-content:center;
   flex-direction: column;
   h1 {
     color: rgb(74, 74, 125);
@@ -42,7 +40,6 @@ const Hero = styled.div`
       }
   }
   p {
-    font-size: 1.5em;
     margin-bottom: 5%;
     @media(max-height:450px){
         font-size:1em;
@@ -54,19 +51,31 @@ const Hero = styled.div`
 `;
 
 const Details = styled.div`
-  height: 30vh;
-  width: 90%;
-  margin-bottom:10%;
+  width: 50%;
+  margin-left:10%;
+  height:80%;
   display: flex;
-  flex-direction:column; 
-  text-align: center;
-  margin-bottom: 2%;
+  flex-direction:column;
+  justify-content:center; 
+  align-items:center;
+  text-align:center;
+
   p {
-    height: 100%;
+    font-size:2.5rem;
+    color:white;
   }
-  @media(max-width:800px){
-      height:40vh;
-  }
+`;
+const Button = styled.button`
+margin-top:5%;
+background: #091E42;
+box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+border-radius: 30px;
+border:none;
+outline:none;
+width:13rem;
+height:3rem;
+font-size:1.5rem;
+color:white;
 `;
 const Sign = styled.div`
  width:80%;
@@ -131,22 +140,12 @@ const Home = () => {
   return (
     <Container>
       <Hero>
+        <Navbar/>
         <Details>
-          <h1>PrizeMi </h1>
-          <Typed
-            strings={[
-              `<p>Get your client needs <p>`,
-              `<p>Break it down into features</p>`,
-              `<p>Set your price rate based on features with PrizeMi</p>`,
-              `<p>A feature-based price management system for freelance software developers </p>`
-            ]}
-            typeSpeed={40}
-            fadeOut={true}
-            fadeOutDelay={100}
-            startDelay={1000}
-            showCursor={false}
-            onComplete={clicked}
-          />
+        <p>
+        Feature Based Price Management For Developers
+        </p>
+        <Button>Get Started </Button>
         </Details>
         {show && <Sign>
           {!isLoggedIn &&
