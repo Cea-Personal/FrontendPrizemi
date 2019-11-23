@@ -9,7 +9,7 @@ const pass = process.env.PASSWORD;
 
 exports.handler = async (event, context) => {
   try {
-    const body = JSON.parse(event.body).name
+    const body = JSON.parse(event.body)
     const { user } = context.clientContext;
     const transporter = nodemailer.createTransport(smtpTransport({
       service:"gmail",
@@ -23,7 +23,7 @@ exports.handler = async (event, context) => {
       from: `${sender}`,
       to: user && user.email ,
       subject: "Welcome to PrizeMi",
-      html: body,
+      html: `<p>Hi ${body.name}</p> ${body.message}`,
     });
     user.role = Buffer.from(`${user.email}_true`).toString('base64')
     return {statusCode: 200, body: 'Mail sent'}

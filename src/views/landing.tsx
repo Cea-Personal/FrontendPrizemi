@@ -1,11 +1,6 @@
 import React, { useState, useContext } from "react";
 import styled from "styled-components";
-import Typed from "react-typed";
-import axios from 'axios';
-import { ThemeContext, LoginContext } from "../state/context";
 import banner from '../assests/banner.svg'
-import { useIdentityContext } from "react-netlify-identity";
-import { FaGithub, FaBitbucket } from 'react-icons/fa';
 import Navbar from '../components/navbar';
 const Container = styled.div`
   width: 100%;
@@ -27,7 +22,7 @@ const Hero = styled.div`
   display: flex;
   background:url(${banner});
   background-repeat:no-repeat;
-  background-size:100%;
+  background-size:95%;
   flex-direction: column;
   h1 {
     color: rgb(74, 74, 125);
@@ -51,8 +46,8 @@ const Hero = styled.div`
 `;
 
 const Details = styled.div`
-  width: 50%;
-  margin-left:10%;
+  width:30%;
+  margin-left:15%;
   height:80%;
   display: flex;
   flex-direction:column;
@@ -112,61 +107,29 @@ const Socials = styled.div`
        color: rgb(30, 20, 93);
 `;
 
-enum providers {
-  Github = "github",
-  Bitbucket = "bitbucket"
-}
+
 const Home = () => {
-  const { settings, loginProvider, isLoggedIn, logoutUser, user } = useIdentityContext()
+
   const [show, setShow] = useState(false)
   const clicked = () => {
     setShow(true)
   }
-  const loadingContext = useContext(LoginContext)
-  const emailMessage = JSON.stringify({
-    name: user && user.user_metadata.full_name,
-    message: `Welcome to PrizeMi
-    <p>We are pleased to have you as part of elite software developers who pride themselves in doing the job and getting the right pay for it.</p>
-    <p>Get Started on PrizeMi</p>`
-  })
-  const authenticate = async (value: providers) => {
-    await loginProvider(value)
-    const isSignedUp = user && Buffer.from(user.role, 'base64').toString('utf8').split('_')[1]
-    !isSignedUp && await axios.post('/.netlify/functions/send_mail', emailMessage)
-  }
+
 
 
 
   return (
     <Container>
       <Hero>
-        <Navbar/>
+        <Navbar />
         <Details>
-        <p>
-        Feature Based Price Management For Developers
+          <p>
+            Feature-based price management for developers
         </p>
-        <Button>Get Started </Button>
+          <Button>Get Started </Button>
         </Details>
-        {show && <Sign>
-          {!isLoggedIn &&
-            <div>
-              <h2>SIGN UP/LOGIN WITH </h2>
-              <Socials>
-                {settings && settings.external.github && <FaGithub onClick={() => authenticate(providers.Github)} />}
-                {settings && settings.external.bitbucket && <FaBitbucket onClick={() => authenticate(providers.Bitbucket)} />}
-              </Socials>
-            </div>
-          }
-        </Sign>}
+      
       </Hero>
-      {/* <Icon>
-        {isLoggedIn && user &&
-          <div>
-            <span>
-              Hello {user.user_metadata.full_name.split(' ')[0]}</span>
-            <button onClick={logoutUser}>Logout</button>
-          </div>}
-      </Icon> */}
     </Container>
   );
 };

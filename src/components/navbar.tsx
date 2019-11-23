@@ -1,20 +1,29 @@
 import React from 'react';
 import styled from 'styled-components';
 import logo from '../assests/logo.svg';
- 
+import Modal from './modal'
+
 const Navbar = () => {
     return (
         <Container>
             <Logo>
                 <img src={logo} alt='logo'/>
                 <p>PrizeMi</p>
-             
             </Logo>
             <Actions>
                 <p>Features</p>
                 <p>Contact</p>
             </Actions>
             <Button>Sign In</Button>
+            <Modal />
+              {/* <Icon>
+        {isLoggedIn && user &&
+          <div>
+            <span>
+              Hello {user.user_metadata.full_name.split(' ')[0]}</span>
+            <button onClick={logoutUser}>Logout</button>
+          </div>}
+      </Icon> */}
         </Container>
     )
 }
@@ -26,8 +35,9 @@ const Container = styled.div`
     height:10vh;
     margin-left:12%;
     background-color:inherit;
-    width:77%;
+    width:72%;
     display:flex;
+    justify-content:center;
     border-bottom:1px solid #e2e2e2;
     position:fixed;
 
@@ -73,3 +83,4 @@ const Button = styled.button`
     height:50%;
 
 `;
+
