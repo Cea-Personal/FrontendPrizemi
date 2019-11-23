@@ -2,10 +2,8 @@ import React, { useState, useContext } from "react";
 import styled from "styled-components";
 import Typed from "react-typed";
 import axios from 'axios';
-import Splash from "./splash";
-import { ThemeContext, LoginContext } from "../state/context"
-
-import background from "../assests/picture.svg";
+import { ThemeContext, LoginContext } from "../state/context";
+import banner from '../assests/banner.svg'
 import { useIdentityContext } from "react-netlify-identity";
 import { FaGithub, FaBitbucket } from 'react-icons/fa'
 const Container = styled.div`
@@ -23,10 +21,13 @@ const Container = styled.div`
   }
 `;
 const Hero = styled.div`
-  width: 40%;
-  margin: 0 5%;
+  width: 100%;
+  margin: 0%;
   height: 100%;
   display: flex;
+  background:url(${banner});
+  background-repeat:no-repeat;
+  background-size:100%;
   align-items: center;
   justify-content:center;
   flex-direction: column;
@@ -48,30 +49,10 @@ const Hero = styled.div`
       }
   }
   @media(max-width:800px){
-    width:90%;
+    width:100%;
   }
 `;
-const Icon = styled.div`
-  background: url(${background});
-  background-size: contain;
-  background-repeat: no-repeat;
-  width: 40%;
-  margin: 0 5%;
-  height: 100%;
-  display: flex;
-  justify-content: flex-end;
-  background-position: center;
-  @media(max-width:800px){
-    order:-1;
-    height:25%;
-    width:90%;
-  }
-  @media(max-height:450px){
-    order:0;
-    width:50%;
-    background-size:100% 200%;
-}
-`;
+
 const Details = styled.div`
   height: 30vh;
   width: 90%;
@@ -149,7 +130,6 @@ const Home = () => {
 
   return (
     <Container>
-      {loadingContext.state.loading && <Splash />}
       <Hero>
         <Details>
           <h1>PrizeMi </h1>
@@ -180,14 +160,14 @@ const Home = () => {
           }
         </Sign>}
       </Hero>
-      <Icon>
+      {/* <Icon>
         {isLoggedIn && user &&
           <div>
             <span>
               Hello {user.user_metadata.full_name.split(' ')[0]}</span>
             <button onClick={logoutUser}>Logout</button>
           </div>}
-      </Icon>
+      </Icon> */}
     </Container>
   );
 };
