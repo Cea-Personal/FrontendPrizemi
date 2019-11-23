@@ -1,6 +1,6 @@
 import React, { useContext} from "react";
 import {LoginContext} from '../state/context';
-import {Redirect} from 'react-router-dom'
+// import {Redirect} from 'react-router-dom'
 import styled from "styled-components";
 import { useIdentityContext } from "react-netlify-identity";
 import banner from '../assests/banner.svg'
@@ -8,11 +8,11 @@ import Navbar from '../components/navbar';
 
 
 
-const Home = () => {
+const Home = (props) => {
   const { isLoggedIn } = useIdentityContext()
   const UseLoginContext = useContext(LoginContext)
   const getStarted =()=>{
-    !isLoggedIn ? UseLoginContext.dispatch({type:'open',payload:'Signup on PrizeMi'}):<Redirect to ='/dashboard'/>
+    !isLoggedIn ? UseLoginContext.dispatch({type:'open',payload:'Signup on PrizeMi'}) : props.history.push('/dashboard')
   }
   return (
     <Container >
