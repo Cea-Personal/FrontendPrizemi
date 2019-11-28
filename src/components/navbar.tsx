@@ -21,7 +21,8 @@ const Navbar = () => {
                 <NavLink to='/contact'>Contact</NavLink>
             </Actions>
             {!isLoggedIn && <Button isInactive={UseLoginContext.state.inactive} onClick={() => UseLoginContext.dispatch({ type: 'open', payload: 'Login to PrizeMi' })}>Log In</Button>}
-            {isLoggedIn && <Button onClick={logoutUser}>Log Out</Button>}
+    {isLoggedIn && <FaUser /> }
+            {/* <Button onClick={logoutUser}>Log Out</Button>} */}
             {UseLoginContext.state.isModalOpen && <Modal />}
             {/* <Icon>
         {isLoggedIn && user &&
@@ -50,7 +51,9 @@ const Container = styled.div`
     position:fixed;
 
 `
-const Logo = styled.div`
+const Logo = styled.div<{
+    isInactive: boolean
+}>`
     display:flex;
     justify-content:space-evenly;
     ${props => (props.isInactive && `pointer-events: none`)};
@@ -70,7 +73,9 @@ const Logo = styled.div`
         font-weight:bold;
     }
 `;
-const Actions = styled.div`
+const Actions = styled.div<{
+    isInactive: boolean
+}>`
     display:flex;
     justify-content:space-evenly;
     width:50%;
@@ -86,7 +91,11 @@ const Actions = styled.div`
         color: #091E42;
     }
 `;
-const Button = styled.button`
+
+
+const Button = styled.button<{
+    isInactive?: boolean
+}>`
     outline:none;
     margin-top:1.5%;
     border:none;

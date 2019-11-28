@@ -5,10 +5,13 @@ import styled from "styled-components";
 import { useIdentityContext } from "react-netlify-identity";
 import banner from '../assests/banner.svg'
 import Navbar from '../components/navbar';
+import {RouteComponentProps} from 'react-router-dom'
 
+interface HomeProps extends RouteComponentProps {
 
+}
 
-const Home = (props) => {
+const Home = (props: HomeProps) => {
   const { isLoggedIn } = useIdentityContext()
   const UseLoginContext = useContext(LoginContext)
   const getStarted =()=>{
@@ -21,7 +24,7 @@ const Home = (props) => {
   
         <Details>
           <p>
-            Feature-based price management for developers
+            Feature-based price management system for developers
         </p>
           <Button onClick={getStarted}>Get Started </Button>
         </Details>
@@ -47,7 +50,9 @@ const Container = styled.div`
       align-items:center;
   }
 `;
-const Hero = styled.div`
+const Hero = styled.div<{
+  isInactive: boolean
+}>`
   width: 100%;
   height: 100%;
   display: flex;

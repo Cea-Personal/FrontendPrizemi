@@ -1,12 +1,12 @@
 <svg width="1367" height="654" viewBox="0 0 1367 654" fill="none" xmlns="http://www.w3.org/2000/svg">
 <style type="text/css" >
-         .change { animation: x .2s ease-in-out alternate 10;animation-iteration-count:1;animation-delay:1.8s; animation-fill-mode: forwards; }
+         .change { animation: x 0.5s linear alternate 10;animation-iteration-count:1;animation-delay:4.5s; animation-fill-mode: forwards; }
 
         @keyframes x {
            from { fill: #091E42; }
              to { fill: #6554C0; }
         }
-         .addeffects { animation: y .2s ease-in-out alternate 10;animation-iteration-count:1;animation-delay:1.2s; animation-fill-mode: forwards; }
+         .addeffects { animation: y 2s linear alternate 10;animation-iteration-count:1;animation-delay:3.1s; animation-fill-mode: forwards; }
 
         @keyframes y {
            from { stroke: none;visibility:hidden;}
@@ -15,21 +15,21 @@
         }
     
         .moveUp{
-            animation: l 2s ease-in-out alternate 10;animation-iteration-count:1; animation-delay:1.2s; animation-fill-mode: forwards; 
+            animation: l 1s linear alternate 10;animation-iteration-count:1; animation-delay:1.5s; animation-fill-mode: forwards; 
         }
                @keyframes l {
            from { visibility: hidden; }
              to { visibility: visible;}
         }
                .hide{
-            animation: b ease-in-out alternate 10;animation-iteration-count:1;animation-delay:1s; animation-fill-mode: forwards; 
+            animation: b 1s linear alternate 10;animation-iteration-count:1;animation-delay:0.5s; animation-fill-mode: forwards; 
         }
                @keyframes b {
            from { visibility: visible; }
              to { visibility: hidden;}
         }
                .open{
-            animation: j ease-in-out alternate 10;animation-iteration-count:1;animation-delay:1.5s; animation-fill-mode: forwards; 
+            animation: j 0.5s linear alternate 10;animation-iteration-count:1;animation-delay:2.6s; animation-fill-mode: forwards; 
         }
                @keyframes j {
            from { visibility: visible; }
