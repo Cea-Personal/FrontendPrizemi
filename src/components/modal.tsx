@@ -37,8 +37,8 @@ const Modal = () => {
         <FaTimes style={{fontSize:'1.5rem' , color:'#ffffff', margin:'5px'}} onClick={()=>UseLoginContext.dispatch({type:'close'})}/>
       </Heading>
       <Actions>
-        {!UseLoginContext.state.loading && settings && settings.external.github && <Icon><FaGithub onClick={() => authenticate(providers.Github)} /><p>Github</p></Icon>}
-        {!UseLoginContext.state.loading && settings && settings.external.bitbucket && <Icon><FaBitbucket onClick={() => authenticate(providers.Bitbucket)} /><p>Bitbucket</p></Icon>}
+        {!UseLoginContext.state.loading && settings && settings.external.github && <Icon onClick={() => authenticate(providers.Github)}><FaGithub /><p>Github</p></Icon>}
+        {!UseLoginContext.state.loading && settings && settings.external.bitbucket && <Icon onClick={() => authenticate(providers.Bitbucket)} ><FaBitbucket /><p>Bitbucket</p></Icon>}
         {UseLoginContext.state.loading && <p> Loading ...</p>}
       </Actions>
     </Container>

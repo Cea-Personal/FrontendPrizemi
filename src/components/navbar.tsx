@@ -21,7 +21,7 @@ const Navbar = () => {
                 <NavLink to='/contact'>Contact</NavLink>
             </Actions>
             {!isLoggedIn && <Button isInactive={UseLoginContext.state.inactive} onClick={() => UseLoginContext.dispatch({ type: 'open', payload: 'Login to PrizeMi' })}>Log In</Button>}
-    {isLoggedIn && <FaUser /> }
+    {isLoggedIn && <User><FaUser /></User>}
             {/* <Button onClick={logoutUser}>Log Out</Button>} */}
             {UseLoginContext.state.isModalOpen && <Modal />}
             {/* <Icon>
@@ -110,4 +110,11 @@ const Button = styled.button<{
     height:50%;
 
 `;
-
+const User = styled.div`
+width:20%;
+height:50%;
+display:flex;
+justify-content:center;
+align-items:center;
+font-size:2rem;
+`;
