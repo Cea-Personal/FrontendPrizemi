@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { LoginContext } from '../state/context';
+import { LoginContext, ScrollContext } from '../state/context';
 import { NavLink } from 'react-router-dom';
 import { useIdentityContext } from "react-netlify-identity";
 import {FaUser} from 'react-icons/fa'
@@ -9,9 +9,10 @@ import Modal from './modal'
 
 const Navbar = () => {
     const UseLoginContext = useContext(LoginContext)
+    const UseScrollContext = useContext(ScrollContext)
     const { isLoggedIn, logoutUser, user } = useIdentityContext()
     return (
-        <Container>
+        <Container scroll = {UseScrollContext.state.scrollTop} height = {UseScrollContext.state.scrollHeight}>
             <Logo isInactive={UseLoginContext.state.inactive}>
                 <img src={logo} alt='logo' />
                 <p>PrizeMi</p>
@@ -38,51 +39,46 @@ const Navbar = () => {
 
 export default Navbar
 
-const Container = styled.div`
-    margin-top:5%; 
+const Container = styled.div<{scroll: number, height:number}>`
+ ${props => (props.scroll > props.height/24  ? `margin-top: 0%` : `margin-top:5%`)};
+  ${props => (props.scroll > props.height/24  ? `position: fixed` : `position:absolute`)};
+  ${props => (props.scroll > props.height/24? `background-color: ${props.color}` : `background-color:initial`)};
     height:10vh;
     z-index:1;
-    margin-left:12%;
-    background-color:initial;
-    width:72%;
+    width:100%;
     display:flex;
     justify-content:center;
-    border-bottom:1px solid #e2e2e2;
-    position:fixed;
 
 `
-const Logo = styled.div<{
-    isInactive: boolean
-}>`
+const Logo = styled.div<{isInactive: boolean}>`
     display:flex;
     justify-content:space-evenly;
     ${props => (props.isInactive && `pointer-events: none`)};
     ${props => (props.isInactive && `opacity: 0.7`)};
     align-items:center;
-    width:30%;
+    width:25%;
+    margin-left:10%;
     height:100%;
     img{
         width:25%;
         height:100%;
-        margin-left:5%;
     }
     p{
         color: #091E42;
-        margin-top:3%;
+        margin-top:12%;
         font-size:2rem;
         font-weight:bold;
+
     }
 `;
-const Actions = styled.div<{
-    isInactive: boolean
-}>`
+const Actions = styled.div<{isInactive: boolean}>`
     display:flex;
     justify-content:space-evenly;
-    width:50%;
+    width:30%;
+    margin-left:10%;
     align-items:center;
     ${props => (props.isInactive && `pointer-events: none`)};
     ${props => (props.isInactive && `opacity: 0.7`)};
-    margin-left:20%;
     color: #091E42;
     font-weight:bold;
     font-size:1.2rem;
@@ -93,18 +89,17 @@ const Actions = styled.div<{
 `;
 
 
-const Button = styled.button<{
-    isInactive?: boolean
-}>`
+const Button = styled.button<{isInactive?: boolean}>`
     outline:none;
     margin-top:1.5%;
+    margin-right:20%;
     border:none;
     ${props => (props.isInactive && `pointer-events: none`)};
     ${props => (props.isInactive && `opacity: 0.7`)};
     background-color:#ffffff;
     font-weight:bold;
     font-size:1rem;
-    width:10%;
+    width:8%;
     color: #091E42;
     border-radius:5px;
     height:50%;
@@ -115,6 +110,7 @@ width:20%;
 height:50%;
 display:flex;
 justify-content:center;
-align-items:center;
+align-items:stretch;
 font-size:2rem;
+color:#efefef;
 `;

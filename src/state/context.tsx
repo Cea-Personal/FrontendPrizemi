@@ -1,10 +1,17 @@
-import { createContext , useContext} from 'react';
+import { createContext} from 'react';
 
    export type dispatchType = {
         type:string,
         payload?:any
     }
-
+export const scrollContext = {
+    state:{
+        isScroll:false,
+        scrollTop:0,
+        scrollHeight:0
+    },
+    dispatch:({}:dispatchType):any => {}
+}
 export const authContext = {
     state:{
     isModalOpen:false,
@@ -34,7 +41,7 @@ export const themes= {
     }
 }
 export const ThemeContext = createContext(themeContext)
-
+export const ScrollContext = createContext(scrollContext)
 export const LoginContext = createContext(authContext)
 
 

@@ -1,11 +1,12 @@
-import React, { useContext} from "react";
-import {LoginContext} from '../state/context';
+import React, { useContext, createRef, useEffect } from "react";
+import { LoginContext, ScrollContext } from '../state/context';
 // import {Redirect} from 'react-router-dom'
 import styled from "styled-components";
 import { useIdentityContext } from "react-netlify-identity";
-import banner from '../assests/banner.svg'
+import banner from '../assests/banner.svg';
 import Navbar from '../components/navbar';
-import {RouteComponentProps} from 'react-router-dom'
+import issues from '../assests/issues.svg';
+import { RouteComponentProps } from 'react-router-dom'
 
 interface HomeProps extends RouteComponentProps {
 
@@ -14,32 +15,67 @@ interface HomeProps extends RouteComponentProps {
 const Home = (props: HomeProps) => {
   const { isLoggedIn } = useIdentityContext()
   const UseLoginContext = useContext(LoginContext)
-  const getStarted =()=>{
-    !isLoggedIn ? UseLoginContext.dispatch({type:'open',payload:'Signup on PrizeMi'}) : props.history.push('/dashboard')
+  const scroll = useContext(ScrollContext)
+  const appRef = createRef<HTMLDivElement>()
+  const scrollEffect = () => {
+    // if (scroll.state.scrollTop == 0) {
+    //   scroll.dispatch({
+    //     type: 'stopScroll',
+    //     payload: {
+    //       scrollTop: window.pageYOffset,
+    //       scrollHeight: appRef.current && appRef.current.scrollHeight,
+    //     }
+    //   })
+    //   return window.removeEventListener('scroll', scrollEffect)
+    // }
+    // else {
+      scroll.dispatch({
+        type: 'scrolling',
+        payload: {
+          scrollTop: window.pageYOffset,
+          scrollHeight: appRef.current && appRef.current.scrollHeight,
+        }
+      })
+    // }
   }
+  const getStarted = () => {
+    !isLoggedIn ? UseLoginContext.dispatch({ type: 'open', payload: 'Signup on PrizeMi' }) : props.history.push('/dashboard')
+  }
+  useEffect(() => {
+    window.addEventListener('scroll', scrollEffect)
+    return () => window.removeEventListener('scroll', scrollEffect)
+  })
   return (
-    <Container >
-            <Navbar />
-      <Hero isInactive= {UseLoginContext.state.inactive}>
-  
+    <Container isInactive={UseLoginContext.state.inactive} ref={appRef}>
+      <Navbar />
+      <Hero isInactive={UseLoginContext.state.inactive}>
         <Details>
           <p>
             Feature-based price management system for developers
         </p>
           <Button onClick={getStarted}>Get Started </Button>
         </Details>
-      
       </Hero>
+      <Issues>
+        <PicturesOfIssuesContainer>
+          <img src={issues} alt='' />
+        </PicturesOfIssuesContainer>
+
+        <StatementOfIssuesContainer>
+
+        </StatementOfIssuesContainer>
+      </Issues>
     </Container>
   );
 };
 
 export default Home;
 
-const Container = styled.div`
+const Container = styled.div<{ isInactive: boolean }>`
   width: 100%;
-  height: 100vh;
   display: flex;
+  flex-direction:column;
+  ${props => (props.isInactive && `overflow: hidden`)};
   background-color: white;
   @media(max-width:800px){
     flex-direction:column;
@@ -50,14 +86,11 @@ const Container = styled.div`
       align-items:center;
   }
 `;
-const Hero = styled.div<{
-  isInactive: boolean
-}>`
+const Hero = styled.div<{ isInactive: boolean }>`
   width: 100%;
-  height: 100%;
+  height: 95vh;
   display: flex;
   background:url(${banner});
-  ${props => (props.isInactive && `overflow: hidden`)};
   ${props => (props.isInactive && `pointer-events: none`)};
   ${props => (props.isInactive && `opacity: 0.7`)};
   background-repeat:no-repeat;
@@ -111,37 +144,16 @@ height:3rem;
 font-size:1.5rem;
 color:white;
 `;
-const Sign = styled.div`
- width:80%;
- margin-top:3vh;
- height:30%;
- border-radius:10px;
- display:flex;
- flex-direction:column;
- justify-content:center;
- border: 2px solid rgb(30, 20, 93);
- align-items:center;
- h2{
-     color:rgb(74, 74, 125);
-     font-size:1.5em;
-     @media(max-height:450px){
-        font-size:1em
-    }
- }
- @media(max-width:800px){
-    height:25%;
-}
-@media(max-height:450px){
-    height:25%;
-}
-`
-const Socials = styled.div`
-    display:flex;
-    width:100%;
-    margin-bottom:10%;
-    justify-content:center;
-    svg{
-        font-size:2em;
-       margin:0 3%;
-       color: rgb(30, 20, 93);
+const Issues = styled.div`
+display:flex;
+width:100%;
+align-items:center;
+height:100%;
 `;
+const PicturesOfIssuesContainer = styled.div`
+width:40%;
+margin-left:10%;
+`;
+const StatementOfIssuesContainer = styled.div`
+width:40%;
+`

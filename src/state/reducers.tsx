@@ -11,6 +11,11 @@ type themeState ={
     loading:boolean,
     isLight:boolean,
 }
+type scrollState = {
+    isScroll:boolean,
+    scrollTop:number,
+    scrollHeight:number,
+}
 export const themeReducer = (reducerState:themeState, actions: dispatchType):themeState =>{
     switch (actions.type){
         case 'loading':
@@ -59,5 +64,28 @@ export const loginReducer = (reducerState:AppState, actions : dispatchType):AppS
             return reducerState
     }
 
+}
+export const scrollReducer = (reducerState:scrollState, actions : dispatchType): scrollState => {
+    switch (actions.type) {
+        case 'scrolling':
+            return {
+                ...reducerState,
+                isScroll:true,
+                scrollTop: actions.payload.scrollTop,
+                scrollHeight: actions.payload.scrollHeight,
+            }
+        case 'stopScroll':{
+            return{
+                ...reducerState,
+                isScroll:false,
+                scrollTop: actions.payload.scrollTop,
+                scrollHeight: actions.payload.scrollHeight,
+              
+            }
+        }
+        default:
+                return reducerState
+        }
+     
 }
 // 

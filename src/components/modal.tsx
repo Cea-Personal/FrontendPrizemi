@@ -13,7 +13,7 @@ enum providers {
 }
 const Modal = () => {
   const UseLoginContext = useContext(LoginContext)
-  const { settings, loginProvider, isLoggedIn, logoutUser, user } = useIdentityContext()
+  const { settings, loginProvider, user } = useIdentityContext()
   const emailMessage = JSON.stringify({
     name: user && user.user_metadata.full_name.split(' ')[0],
     message: `<p>Welcome to PrizeMi<p>
