@@ -65,7 +65,6 @@ const Logo = styled.div<{isInactive: boolean}>`
     }
     p{
         color: #091E42;
-        margin-top:12%;
         font-size:2rem;
         font-weight:bold;
 

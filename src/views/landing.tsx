@@ -5,12 +5,32 @@ import styled from "styled-components";
 import { useIdentityContext } from "react-netlify-identity";
 import banner from '../assests/banner.svg';
 import Navbar from '../components/navbar';
-import issues from '../assests/issues.svg';
-import { RouteComponentProps } from 'react-router-dom'
+import client from '../assests/client.svg';
+import clock from '../assests/clock.svg';
+import thinking from '../assests/thinking.svg';
+import { RouteComponentProps } from 'react-router-dom';
+import { FaCheckCircle } from 'react-icons/fa';
 
 interface HomeProps extends RouteComponentProps {
 
 }
+const Problems = [
+  {
+    id: 0,
+    issue: 'Thinking about what to charge for a project'
+
+  },
+  {
+    id: 1,
+    issue: 'Worries about flunctuating client requirements'
+
+  },
+  {
+    id: 2,
+    issue: 'Poor time estimation for developing features'
+
+  },
+]
 
 const Home = (props: HomeProps) => {
   const { isLoggedIn } = useIdentityContext()
@@ -29,13 +49,13 @@ const Home = (props: HomeProps) => {
     //   return window.removeEventListener('scroll', scrollEffect)
     // }
     // else {
-      scroll.dispatch({
-        type: 'scrolling',
-        payload: {
-          scrollTop: window.pageYOffset,
-          scrollHeight: appRef.current && appRef.current.scrollHeight,
-        }
-      })
+    scroll.dispatch({
+      type: 'scrolling',
+      payload: {
+        scrollTop: window.pageYOffset,
+        scrollHeight: appRef.current && appRef.current.scrollHeight,
+      }
+    })
     // }
   }
   const getStarted = () => {
@@ -58,13 +78,22 @@ const Home = (props: HomeProps) => {
       </Hero>
       <Issues>
         <PicturesOfIssuesContainer>
-          <img src={issues} alt='' />
+          <img className='image1' src={thinking} alt='' />
+          <img className='image2' src={client} alt='' />
+          <img className='image3' src={clock} alt='' />
         </PicturesOfIssuesContainer>
-
         <StatementOfIssuesContainer>
+          <Focus>Focus on building the application</Focus>
+          <Goodbye>Say GoodBye to:</Goodbye>
+          {Problems.map(eachIssue =>
+            <Issue key={eachIssue.id}>
+              <FaCheckCircle />
+              <p>{eachIssue.issue}</p>
+            </Issue>)
 
+          }
         </StatementOfIssuesContainer>
-      </Issues>
+       </Issues>
     </Container>
   );
 };
@@ -147,13 +176,56 @@ color:white;
 const Issues = styled.div`
 display:flex;
 width:100%;
-align-items:center;
+margin-top:5%;
 height:100%;
 `;
 const PicturesOfIssuesContainer = styled.div`
-width:40%;
-margin-left:10%;
+width:50%;
+display:flex;
+flex-direction:column;
+.image1{
+  margin:0% 0% 0% 30%;
+  padding:0;
+  z-index:3;
+}
+.image2{
+  margin-left:0%;
+  transform:translateY(-20%);
+  z-index:2;
+}
+.image3{
+  margin-left:40%;
+  transform:translateY(-40%);
+  z-index:1;
+}
 `;
 const StatementOfIssuesContainer = styled.div`
-width:40%;
+width:50%;
 `
+const Focus = styled.p`
+font-size:2rem;
+margin-top:10%;
+font-weight:bold;
+color: #091E42;
+`;
+const Goodbye = styled.p`
+font-size:1.5rem;
+margin-top:5%;
+margin-left:20%;
+font-weight:bold;
+color: #091E42;
+`;
+const Issue = styled.div`
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  margin-top:2%;
+  font-size:1.5rem;
+  color:#6554C0;
+  p{
+    font-size:1.2rem;
+    margin-left:5%;
+    color: #091E42;
+    width:80%;
+  }
+`;
