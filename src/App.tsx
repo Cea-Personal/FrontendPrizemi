@@ -1,4 +1,4 @@
-import React, { useReducer, useContext, createRef} from "react";
+import React, { useReducer, useContext} from "react";
 import styled from "styled-components";
 import "./App.css";
 import Landing from "./views/landing";

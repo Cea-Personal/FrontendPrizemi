@@ -78,8 +78,6 @@ export const scrollReducer = (reducerState:scrollState, actions : dispatchType):
             return{
                 ...reducerState,
                 isScroll:false,
-                scrollTop: actions.payload.scrollTop,
-                scrollHeight: actions.payload.scrollHeight,
               
             }
         }
