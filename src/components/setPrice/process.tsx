@@ -1,9 +1,11 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
-import Description from "./processDescription"
-import { ScrollContext } from '../../state/context'
+import {NavLink} from 'react-router-dom';
+import Description from "./processDescription";
+import { ScrollContext } from '../../state/context';
 const Process = () => {
     const scroll = useContext(ScrollContext)
+
     return (
         <Container scroll={scroll.state.scrollTop} height={scroll.state.scrollHeight}>
             <ScrollBar>
@@ -12,7 +14,7 @@ const Process = () => {
                 <Description />
                 <Learn>
                     <p> Learn more about PrizeMi</p>
-                    <button> See features</button>
+                    <NavLink to='/features'>See features</NavLink> 
                 </Learn>
             </RightContainer>
         </Container>
@@ -41,13 +43,17 @@ p{width:50%;
     font-size:2rem;
     font-weight:bold;
 }
-button{
-    height:3rem;
+a{
+    height:4rem;
     outline:none;
     color: #6554C0;
-    font-size:1.2rem;
-    width:10rem;
+    font-size:1.3rem;
+    width:12rem;
     border-radius:5px;
+    text-decoration:none;
+    background-color:#ffffff;
+    text-align:center;
+    padding-top:1rem;
 }
 
 `;
