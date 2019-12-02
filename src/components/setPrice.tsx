@@ -44,9 +44,7 @@ height:140vh;`
 const SubHeading = styled.div<{ value:number , scrolled: number , top:number}>`
 display:flex;
 margin-top:0%;
-
-
-${props => (props.value  === props.scrolled - props.top ? `overflow: scroll`: `overflow : hidden`)};
+${props => (props.top > props.scrolled /10 ? `overflow: scroll`: `overflow : hidden`)};
 width:100%;
 height:100vh;
 
