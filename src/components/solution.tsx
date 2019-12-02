@@ -17,7 +17,7 @@ export default Issues
 const Container = styled.div`
 display:flex;
 width:100%;
-margin-top:0.8rem;
+background-color:#ffffff;
 height:100%;
 `;
 

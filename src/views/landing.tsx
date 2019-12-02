@@ -4,6 +4,7 @@ import styled from "styled-components";
 import Navbar from '../components/navbar';
 import Hero from '../components/hero';
 import Solution from '../components/solution';
+import Footer from '../components/footer'
 import SetPrice from '../components/setPrice';
 
 import { RouteComponentProps } from 'react-router-dom';
@@ -16,6 +17,7 @@ const Home = (props: HomeProps) => {
   const scroll = useContext(ScrollContext)
   const appRef = createRef<HTMLDivElement>()
   let value: number | null;
+
   const scrollEffect = () => {
     scroll.dispatch({
       type: 'scrolling',
@@ -33,11 +35,11 @@ const Home = (props: HomeProps) => {
   })
   return (
     <Container isInactive={UseLoginContext.state.inactive} isScroll ={scroll.state.isScroll} ref={appRef}>
-      {console.log(scroll.state.isScroll)}
       <Navbar />
       <Hero props={props}/>
       <Solution />
-      <SetPrice />
+      <SetPrice  />
+      <Footer/>
   
 
      
@@ -51,10 +53,10 @@ const Container = styled.div<{ isInactive: boolean , isScroll:boolean}>`
   width: 100%;
   display: flex;
   height:100%;
+  background: rgb(204, 188 ,124);
   flex-direction:column;
   ${props => (!props.isScroll && `overflow: hidden`)};
   ${props => (props.isInactive && `overflow: hidden`)};
-  background-color: white;
   @media(max-width:800px){
     flex-direction:column;
 

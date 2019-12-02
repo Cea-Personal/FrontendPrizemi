@@ -36,7 +36,7 @@ const Container = styled.div<{ isInactive: boolean }>`
   width: 100%;
   height: 45rem;
   display: flex;
-  background:url(${banner});
+  background:url(${banner}) white;
   ${props => (props.isInactive && `pointer-events: none`)};
   ${props => (props.isInactive && `opacity: 0.7`)};
   background-repeat:no-repeat;

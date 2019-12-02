@@ -18,7 +18,7 @@ export default ProcessDescription;
 
 const Container = styled.div`
 color:#ffffff;
-width:80%;
+width:40%;
 
 .heading{
   font-size:1.5rem;
