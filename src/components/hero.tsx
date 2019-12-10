@@ -3,6 +3,8 @@ import { LoginContext } from '../state/context';
 import styled from "styled-components";
 import { useIdentityContext } from "react-netlify-identity";
 import banner from '../assests/banner.svg';
+import banner2 from '../assests/banner2.svg';
+import {FaChevronDown} from 'react-icons/fa'
 import { RouteComponentProps } from 'react-router-dom';
 
 interface HomeProps extends RouteComponentProps {
@@ -23,6 +25,7 @@ const Hero = (props: HomeProps) => {
         </p>
                 <Button onClick={getStarted}>Get Started </Button>
             </Details>
+            <Movedown><FaChevronDown /></Movedown>
         </Container>
     )
 }
@@ -44,9 +47,11 @@ const Container = styled.div<{ isInactive: boolean }>`
   flex-direction: column;
   @media(max-width:500px){
     height:100vh;
-    background-image:none;
+    z-index:+1;
+    background-image:url(${banner2}) ;
+    background-position:top right;
+    background-size:220%;
     background-color:#6554C0;
-    background-size:cover;
   }
 `;
 const Details = styled.div`
@@ -59,8 +64,9 @@ const Details = styled.div`
   align-items:center;
   text-align:center;
   @media(max-width:500px){
-    width:80%;
-    margin-left:10%;
+    width:90%;
+    margin-left:5%;
+    margin-top:60%;
   }
 
   p {
@@ -68,7 +74,7 @@ const Details = styled.div`
     color:white;
     background-size:95%;
     @media(max-width:500px){
-     font-size:2rem;
+     font-size:1.8rem;
     }
   }
 `;
@@ -83,4 +89,13 @@ width:13rem;
 height:3rem;
 font-size:1.5rem;
 color:white;
+`;
+const Movedown = styled.div`
+display:none
+@media(max-width:500px){
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-size:2rem;
+}
 `;

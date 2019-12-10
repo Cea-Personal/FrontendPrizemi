@@ -24,9 +24,10 @@ export default StatementOfIssuesContainer
 
 const Container = styled.div`
 width:60%;
-padding-top:1%;
+padding-top:5%;
 @media(max-width:500px){
   width:80%;
+  padding-top:1%;
  }
 `
 const Goodbye =styled.div`

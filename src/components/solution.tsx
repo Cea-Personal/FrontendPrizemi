@@ -42,7 +42,7 @@ text-align:center;
 const Goodbye = styled.p`
 font-size:1.2rem;
 margin-left:53%;
-width:40%;
+width:35%;
 color: #091E42;
 @media(max-width:500px){
   margin-top:2%;

@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { LoginContext, ScrollContext } from '../state/context';
 import { NavLink } from 'react-router-dom';
 import { useIdentityContext } from "react-netlify-identity";
-import { FaUser } from 'react-icons/fa'
+import { FaUser, FaBars } from 'react-icons/fa'
 import styled from 'styled-components';
 import logo from '../assests/logo.svg';
 import Modal from './modal'
@@ -14,7 +14,6 @@ const Navbar = () => {
     return (
         <Container scroll={UseScrollContext.state.scrollTop} height={UseScrollContext.state.scrollHeight}>
             <Logo className='actions' isInactive={UseLoginContext.state.inactive}>
-                {/* <img src={logo} alt='logo' /> */}
                 <p>PrizeMi</p>
             </Logo >
             <Actions className='actions' isInactive={UseLoginContext.state.inactive}>
@@ -26,7 +25,9 @@ const Navbar = () => {
             {isLoggedIn && <User><FaUser /></User>}
             {/* <Button onClick={logoutUser}>Log Out</Button>} */}
             {UseLoginContext.state.isModalOpen && <Modal />}
+            <Hamburger className='actions' ><FaBars /></Hamburger>
             {/* <Icon>
+
         {isLoggedIn && user &&
           <div>
             <span>
@@ -46,7 +47,7 @@ const Container = styled.div<{ scroll: number, height: number }>`
   ${props => (props.scroll > props.height / 52 && `background-color: #6554C0`)};
   ${props => (props.scroll > props.height / 52 && `box-shadow: -1px 3px 5px -1px rgba(0,0,0,0.3)`)};
 ${props => (props.scroll > props.height / 4.5 && `background-color:#ffffff`)};
-${props => (props.scroll > props.height /2.1 && `background-color:#091E42`)};
+${props => (props.scroll > props.height / 2.1 && `background-color:#091E42`)};
   opacity:1;
     height:10vh;
     z-index:4;
@@ -54,7 +55,7 @@ ${props => (props.scroll > props.height /2.1 && `background-color:#091E42`)};
     display:flex;
     justify-content:center;
     .actions{
-        a ,p{
+        a ,p, svg{
             color: #091E42;
             ${props => (props.scroll > props.height / 2.1 && `color:#ffffff`)};
         }
@@ -71,6 +72,10 @@ const Logo = styled.div<{ isInactive: boolean }>`
     width:25%;
     margin-left:10%;
     height:100%;
+    @media(max-width:500px){
+        margin-left:0;
+        width:80%;
+    }
     img{
         width:25%;
         height:100%;
@@ -95,9 +100,16 @@ const Actions = styled.div<{ isInactive: boolean }>`
     a{  z-index:6;
         text-decoration:none;
     }
+    @media(max-width:500px){
+        display:none;
+    }
 `;
 
-
+const Hamburger = styled.div`
+display:flex;
+align-items:center;
+font-size:1.5rem;
+`;
 const Button = styled.button<{ isInactive?: boolean }>`
     outline:none;
     margin-top:1.5%;
@@ -113,6 +125,9 @@ const Button = styled.button<{ isInactive?: boolean }>`
     border-radius:5px;
     height:50%;
     z-index:6;
+    @media(max-width:500px){
+        display:none;
+    }
 
 `;
 const User = styled.div`
