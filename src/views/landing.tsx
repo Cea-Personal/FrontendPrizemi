@@ -49,7 +49,7 @@ const Home = (props: HomeProps) => {
 
 export default Home;
 
-const Container = styled.div<{ isInactive: boolean , isScroll:boolean ,top:number , scrolled:number}>`
+const Container = styled.div<{ isInactive: boolean ,top:number , scrolled:number}>`
   width: 100%;
   display: flex;
   height:100%;

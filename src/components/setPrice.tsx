@@ -1,61 +1,93 @@
-import React,{useContext, useState, createRef, useEffect } from "react";
+import React from "react";
 import styled from "styled-components";
-import {ScrollContext} from '../state/context';
-import Process from './setPrice/process';
-import Pictures from './setPrice/picturesOfProcess'
-const SetPrice = () => {
-    const scroll = useContext(ScrollContext)
-    const contRef = createRef<HTMLDivElement>()
-    const [containerScroll , setContainerScroll] = useState(0)
-
-    const checkScroll = () => {
-        return contRef.current && setContainerScroll(contRef.current.scrollHeight)
-    }
-    useEffect(()=> {
-        checkScroll()
-    },[checkScroll])
-
-scroll.state.scrollTop < scroll.state.scrollHeight/1.7 && contRef.current && contRef.current.scrollTo(0, 0)
-// when it has reached the end of the container it should trigger the innerscroll
-// when you have scrolled up from the height of the container it should start scroll the innerScroll down by the same amount
-
+import {NavLink} from 'react-router-dom'
+import Info from '../data/landingPage/priceProcess'
+const ProcessDescription = () => {
     return (
-        <Container  ref ={contRef} >
-               {console.log( 'here', containerScroll, scroll.state.scrollHeight - scroll.state.scrollTop   )}
-            <SubHeading  value={containerScroll}  scrolled = {scroll.state.scrollHeight} top = {scroll.state.scrollTop}>
-                <p>Setting the price for your software job has a better approach</p>
-                <Pictures/>
-            </SubHeading>
-            <Process />
-           
+        <Container>
+            <p>Setting the price for your software job has a better approach</p>
+            <Details>
+            {Info.map(eachInfo =>
+                <Description key={eachInfo.id}>
+                    <img src ={eachInfo.image} alt =''/>
+                    <p className='heading'>{eachInfo.heading}</p>
+                    <p className='moreDetails'>{eachInfo.details}</p>
+                </Description>
+               
+            )}
+            </Details>
+               <Learn>
+                  <p> Learn more about PrizeMi</p>
+                  <NavLink to='/features'>See features</NavLink> 
+              </Learn>
         </Container>
+
     )
 }
-export default SetPrice
-
+export default ProcessDescription;
 
 const Container = styled.div`
+color:#ffffff;
 width:100%;
-background-color:#091E42;
-clip-path: polygon(100% 0%, 0% 0%, 0% 100%, 100% 90%, 100% 90%);
-height:140vh;`
-
-
-const SubHeading = styled.div<{ value:number , scrolled: number , top:number}>`
+height: 100%;
+padding-top:5%;
+background-color:#f2f2f2;
 display:flex;
-margin-top:0%;
-${props => (props.top > props.scrolled /10 ? `overflow: scroll`: `overflow : hidden`)};
-width:100%;
-height:100vh;
-
-
+flex-direction:column;
+clip-path: polygon(100% 0%, 0% 0%, 0% 100%, 100% 90%, 100% 90%);
 p{
-  color:#B89400;
-  width:50%;
-  padding-left:6.5%;
-  padding-top:5%;
-  font-size:2rem;
+    text-align:center;
+    font-size:2rem;
+    color: #B89400;
+}
+`
+const Description = styled.div`
+margin-top:5%;
+width:30%;
+.heading{
+    font-size:1.5rem;
+    text-align:center;
+    color:#091E42;
+    padding-top:10%;
+  }
+  .moreDetails{
+    font-size:1rem;
+    width:80%;
+    margin:0 10%;
+    color:#091E42;
+    text-align:justify;
+  }
+
+img{
+    width:100%;
 }
 
 `;
+const Details = styled.div`
+    display:flex;
+    justify-content:space-evenly;
+    height:100%;
+    width:90%;
+    margin:0 5%;
+`
+const Learn = styled.div`
+display:flex;
+width:80%;
+margin:5% 10%;
+padding:5% 10%;
+border-top:2px solid #091E42;
+align-items:center;
+justify-content:space-evenly;
+a{
+    text-decoration:none;
+    color:#fff;
+    background-color:#091E42;
+    display:flex;
+    width:10vw;
+    height:5vh;
+    align-items:center;
+    justify-content:center;
+    border-radius:10px;
 
+}
+`;
