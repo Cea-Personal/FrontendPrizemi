@@ -35,27 +35,43 @@ background-color:#f2f2f2;
 display:flex;
 flex-direction:column;
 clip-path: polygon(100% 0%, 0% 0%, 0% 100%, 100% 90%, 100% 90%);
+@media(max-width:500px){
+  clip-path:none;
+}
 p{
     text-align:center;
     font-size:2rem;
     color: #B89400;
+    @media(max-width:500px){
+        font-size:1.5rem;
+    }
 }
+
 `
 const Description = styled.div`
 margin-top:5%;
 width:30%;
+@media(max-width:500px){
+    width:100%;
+}
 .heading{
     font-size:1.5rem;
-    text-align:center;
     color:#091E42;
-    padding-top:10%;
+    text-align:left;
+    margin-top:10%;
+    width:90%;
+    margin-left:5%;
+    @media(max-width:500px){
+     font-size:1.2rem;
+     
+     }
   }
   .moreDetails{
+    width:90%;
+    margin-left:5%;
     font-size:1rem;
-    width:80%;
-    margin:0 10%;
     color:#091E42;
-    text-align:justify;
+    text-align:left;
   }
 
 img{
@@ -69,6 +85,9 @@ const Details = styled.div`
     height:100%;
     width:90%;
     margin:0 5%;
+    @media(max-width:500px){
+        flex-direction:column;
+    }
 `
 const Learn = styled.div`
 display:flex;
@@ -78,13 +97,16 @@ padding:5% 10%;
 border-top:2px solid #091E42;
 align-items:center;
 justify-content:space-evenly;
+@media(max-width:500px){
+    flex-direction:column;
+}
 a{
     text-decoration:none;
     color:#fff;
     background-color:#091E42;
     display:flex;
-    width:10vw;
-    height:5vh;
+    width:150px;
+    height:40px;
     align-items:center;
     justify-content:center;
     border-radius:10px;
