@@ -7,15 +7,12 @@ const Issues = () => {
     return (
         <Container>
             <Heading>
-
-           
                 <Focus>Focus on building the application</Focus>
-                <Goodbye>Prizemi features helps developers build applications by managing stakeholders and requirements. PrizeMi helps you:</Goodbye>
-             
-                </Heading>
-                <Details>
-            <img src={PicturesOfIssues} alt='' />
-            <StatementOfIssuesContainer />
+                <Goodbye>Prizemi features helps developers build applications by managing stakeholders and requirements.</Goodbye>
+            </Heading>
+            <Details>
+                <img src={PicturesOfIssues} alt='' />
+                <StatementOfIssuesContainer />
             </Details>
         </Container>
 
@@ -25,29 +22,33 @@ export default Issues
 
 const Container = styled.div`
 display:flex;
-flex-direction:column
+flex-direction:column;
 width:100%;
 background-color:#ffffff;
 height:100%;
+justify-content:center;
 `;
 const Focus = styled.p`
 font-size:2rem;
-margin-top:10%;
 font-weight:bold;
 color: #091E42;
+text-align:center;
 @media(max-width:500px){
-  font-size:1.5rem;
-  margin-top:5%;
+  font-size:1.3rem;
   
+
   }
 `;
 const Goodbye = styled.p`
 font-size:1.2rem;
-margin-top:5%;
-font-weight:bold;
+margin-left:53%;
+width:40%;
 color: #091E42;
 @media(max-width:500px){
   margin-top:2%;
+  margin-left:5%;
+  font-size:1rem;
+  width:90%;
   
   }
 `;
@@ -55,9 +56,22 @@ const Heading = styled.div``;
 
 const Details = styled.div`
 display:flex;
-align-items:center;
-margin-bottom:10%;
+width:90%;
+margin: 0 5%;
+height:100%;  
+margin-bottom:5%;
+jusitfy-content:center;
+@media(max-width:500px){
+        flex-direction:column;
+        justify-content:flex-start;
+        align-items:center;
+    }
+
 img{
-    width:40%;
+    width:70%;
+    height:60vh;
+    @media(max-width:500px){
+        margin-top:8%;
+    }
 }`;
 

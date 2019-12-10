@@ -42,24 +42,11 @@ const Container = styled.div<{ isInactive: boolean }>`
   background-repeat:no-repeat;
   background-size:95%;
   flex-direction: column;
-  h1 {
-    color: rgb(74, 74, 125);
-    font-size: 3em;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    margin-bottom: 0;
-    text-align: center;
-    @media(max-width:800px){
-        font-size:2.5em;
-      }
-  }
-  p {
-    margin-bottom: 5%;
-    @media(max-height:450px){
-        font-size:1em;
-      }
-  }
-  @media(max-width:800px){
-    width:100%;
+  @media(max-width:500px){
+    height:100vh;
+    background-image:none;
+    background-color:#6554C0;
+    background-size:cover;
   }
 `;
 const Details = styled.div`
@@ -71,10 +58,18 @@ const Details = styled.div`
   justify-content:center; 
   align-items:center;
   text-align:center;
+  @media(max-width:500px){
+    width:80%;
+    margin-left:10%;
+  }
 
   p {
     font-size:2.5rem;
     color:white;
+    background-size:95%;
+    @media(max-width:500px){
+     font-size:2rem;
+    }
   }
 `;
 const Button = styled.button`
