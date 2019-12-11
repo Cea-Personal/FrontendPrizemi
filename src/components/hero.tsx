@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { useIdentityContext } from "react-netlify-identity";
 import banner from '../assests/banner.svg';
 import banner2 from '../assests/banner2.svg';
-import {FaChevronDown} from 'react-icons/fa'
+import { FaChevronDown } from 'react-icons/fa'
 import { RouteComponentProps } from 'react-router-dom';
 
 interface HomeProps extends RouteComponentProps {
@@ -12,22 +12,22 @@ interface HomeProps extends RouteComponentProps {
 }
 
 const Hero = (props: HomeProps) => {
-    const { isLoggedIn } = useIdentityContext()
-    const UseLoginContext = useContext(LoginContext)
-    const getStarted = () => {
-        !isLoggedIn ? UseLoginContext.dispatch({ type: 'open', payload: 'Signup on PrizeMi' }) : props.history.push('/dashboard')
-    }
-    return (
-        <Container isInactive={UseLoginContext.state.inactive}>
-            <Details>
-                <p>
-                    Feature-based price management system for developers
+  const { isLoggedIn } = useIdentityContext()
+  const UseLoginContext = useContext(LoginContext)
+  const getStarted = () => {
+    !isLoggedIn ? UseLoginContext.dispatch({ type: 'open', payload: 'Signup on PrizeMi' }) : props.history.push('/dashboard')
+  }
+  return (
+    <Container isInactive={UseLoginContext.state.inactive}>
+      <Details>
+        <p>
+          Feature-based price management system for developers
         </p>
-                <Button onClick={getStarted}>Get Started </Button>
-            </Details>
-            <Movedown><FaChevronDown /></Movedown>
-        </Container>
-    )
+        <Button onClick={getStarted}>Get Started </Button>
+      </Details>
+      <Movedown><FaChevronDown /></Movedown>
+    </Container>
+  )
 }
 
 export default Hero
@@ -66,7 +66,7 @@ const Details = styled.div`
   @media(max-width:500px){
     width:90%;
     margin-left:5%;
-    margin-top:60%;
+    margin-top:65%;
   }
 
   p {

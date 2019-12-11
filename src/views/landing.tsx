@@ -55,8 +55,9 @@ const Container = styled.div<{ isInactive: boolean ,top:number , scrolled:number
   height:100%;
   background: rgb(204, 188 ,124);
   flex-direction:column;
-  ${props => (props.top > props.scrolled/4 ? `overflow: hidden`: `overflow : scroll`)};
+  ${props => (props.top > props.scrolled/4 && `overflow: hidden`)};
   ${props => (props.isInactive && `overflow: hidden`)};
+
   @media(max-width:800px){
     flex-direction:column;
 

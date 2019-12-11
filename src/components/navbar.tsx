@@ -12,6 +12,11 @@ const Navbar = () => {
     const [isMobile, setIsMobile] = useState(false)
     const UseScrollContext = useContext(ScrollContext)
     const { isLoggedIn } = useIdentityContext()
+    const onClicked = (value) => {
+        UseLoginContext.dispatch({ type: 'open', payload: value  })
+        setIsMobile(false)
+
+    }
     return (
         <Container scroll={UseScrollContext.state.scrollTop} height={UseScrollContext.state.scrollHeight}>
             <Logo className='actions' isInactive={UseLoginContext.state.inactive}>
@@ -19,13 +24,13 @@ const Navbar = () => {
                 <Hamburger className='actions' ><FaBars onClick={() => setIsMobile(!isMobile)} /></Hamburger>
             </Logo >
             <Actions className='actions' isInactive={UseLoginContext.state.inactive} mobile={isMobile}>
-                <NavLink to='/' >Home</NavLink>
+                <NavLink to='/home' >Home</NavLink>
                 <NavLink to='/features' className='alternate'>Features</NavLink>
                 <NavLink to='/contact'>Contact</NavLink>
                 <NavLink to='/contact' className='alternate' >Feedback</NavLink>
             </Actions>
-            <Button mobile={isMobile} isInactive={UseLoginContext.state.inactive} onClick={() => UseLoginContext.dispatch({ type: 'open', payload: 'Signup on PrizeMi' })}>Sign Up</Button>
-            {!isLoggedIn  && <Button2 mobile={isMobile} className='login' isInactive={UseLoginContext.state.inactive} onClick={() => UseLoginContext.dispatch({ type: 'open', payload: 'Login to PrizeMi' })}><span>Log In </span><FaArrowRight/></Button2>}
+            <Button mobile={isMobile} isInactive={UseLoginContext.state.inactive} onClick={() => onClicked('Signup on PrizeMi') }>Sign Up</Button>
+            {!isLoggedIn  && <Button2 mobile={isMobile} className='login' isInactive={UseLoginContext.state.inactive} onClick={() => onClicked('Login to Prizemi')}><span>Log In </span><FaArrowRight/></Button2>}
             {isLoggedIn && <User><FaUser /></User>}
             {/* <Button onClick={logoutUser}>Log Out</Button>} */}
             {UseLoginContext.state.isModalOpen && <Modal />}

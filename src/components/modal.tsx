@@ -23,7 +23,6 @@ const Modal = () => {
   const authenticate = async (value: providers) => {
     await UseLoginContext.dispatch({type:'loading'})
     await loginProvider(value)
-    console.log(user)
     const isSignedUp = user && Buffer.from(user.role, 'base64').toString('utf8').split('_')[1]
     !isSignedUp && await axios.post('/.netlify/functions/send_mail', emailMessage)
     // trigger a toast for successfully signed up and close the modal
@@ -57,6 +56,11 @@ const Container = styled.div`
   display:flex;
   flex-direction:column;
   box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.25);
+  @media(max-width:500px){
+    width:80%;
+    margin:0 10%;
+    height:40vh;
+  }
 `;
 const Heading = styled.div`
 width:100%;
