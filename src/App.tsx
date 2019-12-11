@@ -8,8 +8,8 @@ import { loginReducer, themeReducer, scrollReducer } from "./state/reducers"
 import { Route } from "react-router-dom";
 const AppContainer = styled.div`
   width: 100%;
+  height:100%;
   margin-top: 0%;
-  overflow-y:scroll;
   @media (max-width: 750px) {
     margin-top: 0%;
   }

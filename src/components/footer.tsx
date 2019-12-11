@@ -1,9 +1,10 @@
-import React from 'react';
+import React,{useContext} from 'react';
 import styled from 'styled-components';
-
+import { LoginContext } from '../state/context';
 const Footer = ()=> {
+    const UseLoginContext = useContext(LoginContext)
     return (
-    <Container>
+    <Container isInactive={UseLoginContext.state.inactive}>
             <p>PrizeMi</p>
             <Links>
             <a>Send feedback</a>
@@ -14,10 +15,10 @@ const Footer = ()=> {
 }
 export default Footer
 
-const Container = styled.div`
+const Container = styled.div<{ isInactive: boolean}>`
 height:20vh;
 width:100%;
-display:flex;
+${props => (props.isInactive ? `display: none `: `display:flex`)};
 justify-content:center;
 align-items:center;
 clip-path: polygon(100% 0%, 0% 40%, 0% 100%, 100% 100%);

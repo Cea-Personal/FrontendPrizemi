@@ -35,6 +35,12 @@ export const themeReducer = (reducerState:themeState, actions: dispatchType):the
 }
 export const loginReducer = (reducerState:AppState, actions : dispatchType):AppState => {
     switch (actions.type) {
+        case 'stopScroll':
+            return{
+            ...reducerState,
+            isModalOpen: false,
+            inactive:true,  
+        }
         case 'open':
             return {
                 ...reducerState,
@@ -74,13 +80,6 @@ export const scrollReducer = (reducerState:scrollState, actions : dispatchType):
                 scrollTop: actions.payload.scrollTop,
                 scrollHeight: actions.payload.scrollHeight,
             }
-        case 'stopScroll':{
-            return{
-                ...reducerState,
-                isScroll:false,
-              
-            }
-        }
         default:
                 return reducerState
         }

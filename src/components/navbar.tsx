@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react';
 import { LoginContext, ScrollContext } from '../state/context';
 import { NavLink } from 'react-router-dom';
 import { useIdentityContext } from "react-netlify-identity";
-import { FaUser, FaBars , FaArrowRight } from 'react-icons/fa'
+import { FaUser, FaBars } from 'react-icons/fa'
 import styled from 'styled-components';
 import logo from '../assests/logo.svg';
 import Modal from './modal'
@@ -12,25 +12,30 @@ const Navbar = () => {
     const [isMobile, setIsMobile] = useState(false)
     const UseScrollContext = useContext(ScrollContext)
     const { isLoggedIn } = useIdentityContext()
-    const onClicked = (value) => {
+    const linkClicked = (value) => {
         UseLoginContext.dispatch({ type: 'open', payload: value  })
         setIsMobile(false)
 
     }
+    const hamBurgerClicked = () => {
+        UseLoginContext.dispatch({ type: 'stopScroll'})
+        setIsMobile(!isMobile)
+    }
+
     return (
         <Container scroll={UseScrollContext.state.scrollTop} height={UseScrollContext.state.scrollHeight}>
-            <Logo className='actions' isInactive={UseLoginContext.state.inactive}>
+            <Logo className='actions' isModalOpen={UseLoginContext.state.isModalOpen}>
                 <p>PrizeMi</p>
-                <Hamburger className='actions' ><FaBars onClick={() => setIsMobile(!isMobile)} /></Hamburger>
+                <Hamburger className='actions' ><FaBars onClick={() => hamBurgerClicked()} /></Hamburger>
             </Logo >
-            <Actions className='actions' isInactive={UseLoginContext.state.inactive} mobile={isMobile}>
+            <Actions className='actions' isModalOpen={UseLoginContext.state.isModalOpen} mobile={isMobile}>
                 <NavLink to='/home' >Home</NavLink>
                 <NavLink to='/features' className='alternate'>Features</NavLink>
                 <NavLink to='/contact'>Contact</NavLink>
                 <NavLink to='/contact' className='alternate' >Feedback</NavLink>
             </Actions>
-            <Button mobile={isMobile} isInactive={UseLoginContext.state.inactive} onClick={() => onClicked('Signup on PrizeMi') }>Sign Up</Button>
-            {!isLoggedIn  && <Button2 mobile={isMobile} className='login' isInactive={UseLoginContext.state.inactive} onClick={() => onClicked('Login to Prizemi')}><span>Log In </span><FaArrowRight/></Button2>}
+            <Button mobile={isMobile} isModalOpen={UseLoginContext.state.isModalOpen} onClick={() => linkClicked('Signup on PrizeMi') }>Sign Up</Button>
+            {!isLoggedIn  && <Button2 mobile={isMobile} className='login' isModalOpen={UseLoginContext.state.isModalOpen} onClick={() => linkClicked('Login to Prizemi')}>Log In</Button2>}
             {isLoggedIn && <User><FaUser /></User>}
             {/* <Button onClick={logoutUser}>Log Out</Button>} */}
             {UseLoginContext.state.isModalOpen && <Modal />}
@@ -75,12 +80,12 @@ ${props => (props.scroll > props.height / 2.1 && `background-color:#091E42`)};
 
     }
 `
-const Logo = styled.div<{ isInactive: boolean }>`
+const Logo = styled.div<{ isModalOpen: boolean }>`
     display:flex;
     z-index:6;
     justify-content:space-evenly;
-    ${props => (props.isInactive && `pointer-events: none`)};
-    ${props => (props.isInactive && `opacity: 0.7`)};
+    ${props => (props.isModalOpen && `pointer-events: none`)};
+    ${props => (props.isModalOpen && `opacity: 0.7`)};
     align-items:center;
     width:25%;
     margin-left:10%;
@@ -104,14 +109,14 @@ const Logo = styled.div<{ isInactive: boolean }>`
 
     }
 `;
-const Actions = styled.div<{ isInactive: boolean, mobile: boolean }>`
+const Actions = styled.div<{ mobile: boolean ,isModalOpen:boolean }>`
     display:flex;
     justify-content:space-evenly;
     width:30%;
     margin-left:10%;
     align-items:center;
-    ${props => (props.isInactive && `pointer-events: none`)};
-    ${props => (props.isInactive && `opacity: 0.7`)};
+    ${props => (props.isModalOpen && `pointer-events: none`)};
+    ${props => (props.isModalOpen && `opacity: 0.7`)};
     font-weight:bold;
     font-size:1.2rem;
     a{  
@@ -151,14 +156,10 @@ margin-right:5%;
 
 }
 `;
-const Button = styled.button<{ isInactive?: boolean, mobile: boolean }>`
-    outline:none;
-    margin-top:1.5%;
-    margin-right:20%;
-    border:none;
-    display:flex;
-    ${props => (props.isInactive && `pointer-events: none`)};
-    ${props => (props.isInactive && `opacity: 0.7`)};
+const Button = styled.button<{ mobile: boolean , isModalOpen?:boolean }>`
+    display:none;
+    ${props => (props.isModalOpen && `pointer-events: none`)};
+    ${props => (props.isModalOpen && `opacity: 0.7`)};
     font-weight:bold;
     font-size:1rem;
     width:8%;
@@ -169,11 +170,11 @@ const Button = styled.button<{ isInactive?: boolean, mobile: boolean }>`
     z-index:6;
     @media(max-width:500px){
         width:90%;
-        ${props => (props.mobile ? `flex-direction: column ` : `display:none`)};
+        ${props => (props.mobile ? `display:flex` : `display:none`)};
         position:fixed;
         height:14.2vh;
         top:71.6vh;
-        justify-content:center;
+        align-items:center;
         margin:0 5%;
         font-size:1.2rem;
         padding-left:10%;
@@ -182,12 +183,24 @@ const Button = styled.button<{ isInactive?: boolean, mobile: boolean }>`
     }
     
 `;
-const Button2 = styled.button<{ isInactive?: boolean, mobile: boolean }>`
-    display:none;
+const Button2 = styled.button<{ isModalOpen?: boolean, mobile: boolean }>`
+    display:flex;
+    outline:none;
+    margin-top:1.5%;
+    margin-right:20%;
+    border:none;
+    font-weight:bold;
+    font-size:1rem;
+    width:8%;
+    justify-content:center;
+    color: #091E42;
+    border-radius:5px;
+    height:50%;
+    background-color:#ffffff;
+    ${props => (props.isModalOpen && `pointer-events: none`)};
+    ${props => (props.isModalOpen && `opacity: 0.7`)};
     @media(max-width:500px){
         ${props => (props.mobile ? `display: flex `:`display:none`)};
-        ${props => (props.isInactive && `pointer-events: none`)};
-        ${props => (props.isInactive && `opacity: 0.7`)};
         flex-direction:row;
         outline:none;
         border:none;
@@ -199,14 +212,12 @@ const Button2 = styled.button<{ isInactive?: boolean, mobile: boolean }>`
         height:14.2vh;
         top:85.8vh;
         align-items:center;
+        justify-content:flex-start;
         margin:0 5%;
         font-size:1.2rem;
         padding-left:10%;
         border-radius:0;
         background-color:#6554C0;
-        span{
-            margin-right:10%;
-        }
     }
  `;
     

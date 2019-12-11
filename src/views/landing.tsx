@@ -34,7 +34,7 @@ const Home = (props: HomeProps) => {
     return () => window.removeEventListener('scroll', scrollEffect)
   })
   return (
-    <Container isInactive={UseLoginContext.state.inactive} top={scroll.state.scrollTop} scrolled = {scroll.state.scrollHeight} ref={appRef}>
+    <Container isInactive={UseLoginContext.state.inactive} ref={appRef}>
       <Navbar />
       <Hero props={props}/>
       <Solution />
@@ -49,15 +49,13 @@ const Home = (props: HomeProps) => {
 
 export default Home;
 
-const Container = styled.div<{ isInactive: boolean ,top:number , scrolled:number}>`
+const Container = styled.div<{ isInactive: boolean }>`
   width: 100%;
   display: flex;
   height:100%;
   background: rgb(204, 188 ,124);
   flex-direction:column;
-  ${props => (props.top > props.scrolled/4 && `overflow: hidden`)};
   ${props => (props.isInactive && `overflow: hidden`)};
-
   @media(max-width:800px){
     flex-direction:column;
 

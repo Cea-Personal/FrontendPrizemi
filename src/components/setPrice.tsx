@@ -1,10 +1,12 @@
-import React from "react";
+import React,{useContext} from "react";
 import styled from "styled-components";
-import {NavLink} from 'react-router-dom'
+import {NavLink} from 'react-router-dom';
+import { LoginContext } from '../state/context';
 import Info from '../data/landingPage/priceProcess'
 const ProcessDescription = () => {
+    const UseLoginContext = useContext(LoginContext)
     return (
-        <Container>
+        <Container isInactive={UseLoginContext.state.inactive} isModalOpen={UseLoginContext.state.isModalOpen}>
             <p>Setting the price for your software job has a better approach</p>
             <Details>
             {Info.map(eachInfo =>
@@ -26,13 +28,16 @@ const ProcessDescription = () => {
 }
 export default ProcessDescription;
 
-const Container = styled.div`
+const Container = styled.div<{ isInactive: boolean, isModalOpen:boolean }>`
 color:#ffffff;
+${props => (props.isModalOpen && `pointer-events: none`)};
+${props => (props.isModalOpen && `opacity: 0.7`)};
+${props => (props.isInactive ? `display: none `: `display:flex`)};
 width:100%;
 height: 100%;
 padding-top:5%;
 background-color:#f2f2f2;
-display:flex;
+
 flex-direction:column;
 clip-path: polygon(100% 0%, 0% 0%, 0% 100%, 100% 90%, 100% 90%);
 @media(max-width:500px){

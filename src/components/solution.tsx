@@ -1,11 +1,14 @@
 
-import React from "react";
+import React,{useContext} from "react";
 import styled from "styled-components";
 import PicturesOfIssues from '../assests/issues.svg'
 import StatementOfIssuesContainer from './issues'
+import { LoginContext } from '../state/context';
+
 const Issues = () => {
+    const UseLoginContext = useContext(LoginContext)
     return (
-        <Container>
+        <Container isInactive={UseLoginContext.state.inactive} isModalOpen = {UseLoginContext.state.isModalOpen}>
             <Heading>
                 <Focus>Focus on building the application</Focus>
                 <Goodbye>Prizemi features helps developers build applications by managing stakeholders and requirements.</Goodbye>
@@ -20,8 +23,10 @@ const Issues = () => {
 }
 export default Issues
 
-const Container = styled.div`
-display:flex;
+const Container = styled.div<{ isInactive: boolean, isModalOpen:boolean }>`
+${props => (props.isInactive ? `display: none`:`display:flex`)};
+${props => (props.isModalOpen && `pointer-events: none`)};
+${props => (props.isModalOpen && `opacity: 0.7`)};
 flex-direction:column;
 width:100%;
 background-color:#ffffff;
