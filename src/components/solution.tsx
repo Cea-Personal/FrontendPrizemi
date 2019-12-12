@@ -40,8 +40,6 @@ color: #091E42;
 text-align:center;
 @media(max-width:500px){
   font-size:1.3rem;
-  
-
   }
 `;
 const Goodbye = styled.p`

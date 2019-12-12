@@ -18,8 +18,9 @@ const Navbar = () => {
 
     }
     const hamBurgerClicked = () => {
-        UseLoginContext.dispatch({ type: 'stopScroll'})
         setIsMobile(!isMobile)
+        !isMobile && UseLoginContext.dispatch({ type: 'stopScroll'})
+    
     }
 
     return (
@@ -34,23 +35,12 @@ const Navbar = () => {
                 <NavLink to='/contact'>Contact</NavLink>
                 <NavLink to='/contact' className='alternate' >Feedback</NavLink>
             </Actions>
-            {!isLoggedIn  && <Button mobile={isMobile} isModalOpen={UseLoginContext.state.isModalOpen} onClick={() => linkClicked('Signup on PrizeMi') }>Sign Up</Button>}
-            {!isLoggedIn  && <Button2 mobile={isMobile} className='login' isModalOpen={UseLoginContext.state.isModalOpen} onClick={() => linkClicked('Login to Prizemi')}>Log In</Button2>}
-            {isLoggedIn && <Button mobile={isMobile} isModalOpen={UseLoginContext.state.isModalOpen}>Dashboard</Button> }
-            {isLoggedIn  && <Button2 mobile={isMobile} className='login' isModalOpen={UseLoginContext.state.isModalOpen}>Your Profile</Button2>}
-            {/* {isLoggedIn && <User><FaUser /></User>} */}
+            {!isLoggedIn  && <Button isLoggedIn={isLoggedIn} mobile={isMobile} isModalOpen={UseLoginContext.state.isModalOpen} onClick={() => linkClicked('Signup on PrizeMi') }>Sign Up</Button>}
+            {!isLoggedIn  && <Button2 isLoggedIn={isLoggedIn} mobile={isMobile} className='login' isModalOpen={UseLoginContext.state.isModalOpen} onClick={() => linkClicked('Login to Prizemi')}>Log In</Button2>}
+            {isLoggedIn && <Button isLoggedIn ={isLoggedIn} mobile={isMobile} isModalOpen={UseLoginContext.state.isModalOpen}>Dashboard</Button> }
+            {isLoggedIn  && <Button2  isLoggedIn ={isLoggedIn} mobile={isMobile} className='login' isModalOpen={UseLoginContext.state.isModalOpen}>Your Profile</Button2>}
             {/* <Button onClick={logoutUser}>Log Out</Button>} */}
             {UseLoginContext.state.isModalOpen && <Modal />}
-
-            {/* <Icon>
-
-        {isLoggedIn && user &&
-          <div>
-            <span>
-              Hello {user.user_metadata.full_name.split(' ')[0]}</span>
-            <button onClick={logoutUser}>Logout</button>
-          </div>}
-      </Icon> */}
         </Container>
     )
 }
@@ -158,14 +148,16 @@ margin-right:5%;
 
 }
 `;
-const Button = styled.button<{ mobile: boolean , isModalOpen?:boolean }>`
+const Button = styled.button<{ mobile: boolean , isModalOpen?:boolean , isLoggedIn:boolean }>`
     display:none;
     ${props => (props.isModalOpen && `pointer-events: none`)};
     ${props => (props.isModalOpen && `opacity: 0.7`)};
+    ${props => (props.isLoggedIn ? `color: #ffffff`: ` color: #091E42;`)};
+    ${props => (props.isLoggedIn ? `background-color:inherit`: ` background-color: #ffffff`)};
     font-weight:bold;
     font-size:1rem;
     width:8%;
-    color: #091E42;
+   
     border-radius:5px;
     height:50%;
     background-color:#ffffff;
@@ -185,7 +177,7 @@ const Button = styled.button<{ mobile: boolean , isModalOpen?:boolean }>`
     }
     
 `;
-const Button2 = styled.button<{ isModalOpen?: boolean, mobile: boolean }>`
+const Button2 = styled.button<{ isModalOpen?: boolean, mobile: boolean , isLoggedIn:boolean}>`
     display:flex;
     outline:none;
     margin-top:1.5%;
@@ -195,12 +187,12 @@ const Button2 = styled.button<{ isModalOpen?: boolean, mobile: boolean }>`
     font-size:1rem;
     width:8%;
     justify-content:center;
-    color: #091E42;
     border-radius:5px;
     height:50%;
-    background-color:#ffffff;
     ${props => (props.isModalOpen && `pointer-events: none`)};
     ${props => (props.isModalOpen && `opacity: 0.7`)};
+    ${props => (props.isLoggedIn ? `color: #ffffff`: ` color: #091E42;`)};
+    ${props => (props.isLoggedIn ? `background-color:inherit`: ` background-color: #ffffff`)};
     @media(max-width:500px){
         ${props => (props.mobile ? `display: flex `:`display:none`)};
         flex-direction:row;
@@ -223,12 +215,3 @@ const Button2 = styled.button<{ isModalOpen?: boolean, mobile: boolean }>`
     }
  `;
     
-const User = styled.div`
-width:20%;
-height:50%;
-display:flex;
-justify-content:center;
-align-items:stretch;
-font-size:2rem;
-color:#efefef;
-`;

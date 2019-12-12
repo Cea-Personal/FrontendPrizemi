@@ -18,7 +18,7 @@ const Hero = (props: HomeProps) => {
     !isLoggedIn ? UseLoginContext.dispatch({ type: 'open', payload: 'Signup on PrizeMi' }) : props.history.push('/dashboard')
   }
   return (
-    <Container isModalOpen={UseLoginContext.state.isModalOpen} isactive={UseLoginContext.state.inactive}>
+    <Container isModalOpen={UseLoginContext.state.isModalOpen} isInactive={UseLoginContext.state.inactive}>
       <Details>
         <p>
           Feature-based price management system for developers
@@ -41,7 +41,7 @@ const Container = styled.div<{ isInactive: boolean , isModalOpen:boolean }>`
   background:url(${banner}) white;
   ${props => (props.isInactive && `pointer-events: none`)};
   ${props => (props.isModalOpen && `opacity: 0.7`)};
-  ${props => (props.isModalOpen ? `height: 100vh`: 'height:50rem')};
+  ${props => (props.isModalOpen ? `height: 96vh`: 'height:50rem')};
   background-repeat:no-repeat;
   background-size:95%;
   flex-direction: column;
