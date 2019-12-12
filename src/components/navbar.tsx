@@ -152,8 +152,8 @@ const Button = styled.button<{ mobile: boolean , isModalOpen?:boolean , isLogged
     display:none;
     ${props => (props.isModalOpen && `pointer-events: none`)};
     ${props => (props.isModalOpen && `opacity: 0.7`)};
-    ${props => (props.isLoggedIn ? `color: #ffffff`: ` color: #091E42;`)};
-    ${props => (props.isLoggedIn ? `background-color:inherit`: ` background-color: #ffffff`)};
+    color: #091E42;
+    background-color: #ffffff
     font-weight:bold;
     font-size:1rem;
     width:8%;
