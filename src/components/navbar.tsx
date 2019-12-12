@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react';
 import { LoginContext, ScrollContext } from '../state/context';
 import { NavLink } from 'react-router-dom';
 import { useIdentityContext } from "react-netlify-identity";
-import { FaUser, FaBars } from 'react-icons/fa'
+import { FaUser, FaBars , FaTimes } from 'react-icons/fa'
 import styled from 'styled-components';
 import logo from '../assests/logo.svg';
 import Modal from './modal'
@@ -157,7 +157,7 @@ const Button = styled.button<{ mobile: boolean , isModalOpen?:boolean , isLogged
     font-weight:bold;
     font-size:1rem;
     width:8%;
-   
+    outline:none;
     border-radius:5px;
     height:50%;
     background-color:#ffffff;
