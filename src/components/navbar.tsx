@@ -34,9 +34,11 @@ const Navbar = () => {
                 <NavLink to='/contact'>Contact</NavLink>
                 <NavLink to='/contact' className='alternate' >Feedback</NavLink>
             </Actions>
-            <Button mobile={isMobile} isModalOpen={UseLoginContext.state.isModalOpen} onClick={() => linkClicked('Signup on PrizeMi') }>Sign Up</Button>
+            {!isLoggedIn  && <Button mobile={isMobile} isModalOpen={UseLoginContext.state.isModalOpen} onClick={() => linkClicked('Signup on PrizeMi') }>Sign Up</Button>}
             {!isLoggedIn  && <Button2 mobile={isMobile} className='login' isModalOpen={UseLoginContext.state.isModalOpen} onClick={() => linkClicked('Login to Prizemi')}>Log In</Button2>}
-            {isLoggedIn && <User><FaUser /></User>}
+            {isLoggedIn && <Button mobile={isMobile} isModalOpen={UseLoginContext.state.isModalOpen}>Dashboard</Button> }
+            {isLoggedIn  && <Button2 mobile={isMobile} className='login' isModalOpen={UseLoginContext.state.isModalOpen}>Your Profile</Button2>}
+            {/* {isLoggedIn && <User><FaUser /></User>} */}
             {/* <Button onClick={logoutUser}>Log Out</Button>} */}
             {UseLoginContext.state.isModalOpen && <Modal />}
 
