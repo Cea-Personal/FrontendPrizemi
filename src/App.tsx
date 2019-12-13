@@ -2,6 +2,7 @@ import React, { useReducer, useContext} from "react";
 import styled from "styled-components";
 import "./App.css";
 import Landing from "./views/landing";
+import Dashboard from './views/dashboard';
 import { ThemeContext, LoginContext, authContext, themeContext, scrollContext, ScrollContext } from "./state/context"
 import { IdentityContextProvider} from "react-netlify-identity"
 import { loginReducer, themeReducer, scrollReducer } from "./state/reducers"
@@ -33,6 +34,7 @@ const App = () => {
             <AppContainer   theme={theme.state.isLight} >
             <Route exact path="/" component={Landing} />
             <Route path="/home" component={Landing} />
+            <Route path="/dashboard" component={Dashboard} />
           </AppContainer>
         </LoginContext.Provider>
         </ScrollContext.Provider>

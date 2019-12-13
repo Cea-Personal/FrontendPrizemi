@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import { RouteProps, Route } from 'react-router-dom'
 import { LoginContext } from '../state/context';
 import styled from "styled-components";
 import { useIdentityContext } from "react-netlify-identity";
@@ -10,6 +11,8 @@ import { RouteComponentProps } from 'react-router-dom';
 interface HomeProps extends RouteComponentProps {
 
 }
+
+const {h} = RouteProps
 
 const Hero = (props: HomeProps) => {
   const { isLoggedIn } = useIdentityContext()

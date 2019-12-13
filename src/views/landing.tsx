@@ -36,7 +36,7 @@ const Home = (props: HomeProps) => {
   return (
     <Container isInactive={UseLoginContext.state.inactive} ref={appRef}>
       <Navbar />
-      <Hero props={props}/>
+      <Hero/>
       <Solution />
       <SetPrice  />
       <Footer/>
