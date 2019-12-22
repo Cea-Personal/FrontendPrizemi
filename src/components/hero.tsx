@@ -38,7 +38,7 @@ const Container = styled.div<{ isInactive: boolean , isModalOpen:boolean }>`
   display: flex;
   background:url(${banner}) white;
   ${props => (props.isInactive && `pointer-events: none`)};
-  ${props => (props.isModalOpen && `opacity: 0.7`)};
+  ${props => (props.isModalOpen && `opacity: 0.5`)};
   ${props => (props.isModalOpen ? `height: 96vh`: 'height:50rem')};
   background-repeat:no-repeat;
   background-size:95%;

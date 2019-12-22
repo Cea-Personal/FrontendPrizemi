@@ -47,7 +47,6 @@ const Container = styled.div<{ isInactive: boolean }>`
   width: 100%;
   display: flex;
   height:100%;
-  background: rgb(204, 188 ,124);
   flex-direction:column;
   ${props => (props.isInactive && `overflow: hidden`)};
   @media(max-width:800px){
