@@ -1,24 +1,19 @@
 import React, { useContext } from "react";
-import { RouteProps, Route } from 'react-router-dom'
 import { LoginContext } from '../state/context';
 import styled from "styled-components";
 import { useIdentityContext } from "react-netlify-identity";
 import banner from '../assests/banner.svg';
 import banner2 from '../assests/banner2.svg';
-import { FaChevronDown } from 'react-icons/fa'
-import { RouteComponentProps } from 'react-router-dom';
+import { FaChevronDown } from 'react-icons/fa';
+import {useHistory} from 'react-router'
 
-interface HomeProps extends RouteComponentProps {
 
-}
-
-const {h} = RouteProps
-
-const Hero = (props: HomeProps) => {
+const Hero = () => {
+  const history = useHistory()
   const { isLoggedIn } = useIdentityContext()
   const UseLoginContext = useContext(LoginContext)
   const getStarted = () => {
-    !isLoggedIn ? UseLoginContext.dispatch({ type: 'open', payload: 'Signup on PrizeMi' }) : props.history.push('/dashboard')
+    !isLoggedIn ? UseLoginContext.dispatch({ type: 'open', payload: 'Signup on PrizeMi' }) : history.push('/dashboard')
   }
   return (
     <Container isModalOpen={UseLoginContext.state.isModalOpen} isInactive={UseLoginContext.state.inactive}>

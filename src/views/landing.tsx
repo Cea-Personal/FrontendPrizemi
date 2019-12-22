@@ -9,10 +9,7 @@ import SetPrice from '../components/setPrice';
 
 import { RouteComponentProps } from 'react-router-dom';
 
-interface HomeProps extends RouteComponentProps {
-
-}
-const Home = (props: HomeProps) => {
+const Home = () => {
   const UseLoginContext = useContext(LoginContext)
   const scroll = useContext(ScrollContext)
   const appRef = createRef<HTMLDivElement>()
@@ -40,9 +37,6 @@ const Home = (props: HomeProps) => {
       <Solution />
       <SetPrice  />
       <Footer/>
-  
-
-     
     </Container>
   );
 };
