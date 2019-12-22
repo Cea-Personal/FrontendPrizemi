@@ -45,7 +45,7 @@ const Navbar = () => {
             {!isLoggedIn  && <Button isLoggedIn={isLoggedIn} mobile={isMobile} isModalOpen={UseLoginContext.state.isModalOpen} onClick={() => AuthClicked('Signup on PrizeMi') }>Sign Up</Button>}
             {!isLoggedIn  && <Button2 isLoggedIn={isLoggedIn} mobile={isMobile} className='login' isModalOpen={UseLoginContext.state.isModalOpen} onClick={() => AuthClicked('Login to Prizemi')}><span>Log In</span><FaArrowRight/></Button2>}
             {isLoggedIn && <Button isLoggedIn ={isLoggedIn} mobile={isMobile} isModalOpen={UseLoginContext.state.isModalOpen}>Dashboard</Button> }
-            {isLoggedIn  && <Button2  isLoggedIn ={isLoggedIn} mobile={isMobile} className='login' isModalOpen={UseLoginContext.state.isModalOpen}><span>Your Profile</span><FaArrowRight/></Button2>}
+            {isLoggedIn  && <Button2  isLoggedIn ={isLoggedIn} mobile={isMobile} className='login' isModalOpen={UseLoginContext.state.isModalOpen}><span>Profile</span><FaArrowRight/></Button2>}
             {/* <Button onClick={logoutUser}>Log Out</Button>} */}
             {UseLoginContext.state.isModalOpen && <Modal />}
         </Container>
@@ -220,7 +220,7 @@ const Button2 = styled.button<{ isModalOpen?: boolean, mobile: boolean , isLogge
     @media(max-height:400px){
         font-size:0.9rem;
         width:20%;
-        margin-right:15%;
+        margin-right:17%;
     }
     @media(max-width:800px) and (min-height:401px){
         ${props => (props.mobile ? `display: flex `:`display:none`)};
