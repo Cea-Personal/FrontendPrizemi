@@ -80,7 +80,7 @@ const Details = styled.div`
      font-size:1.8rem;
     }
     @media(max-height:400px){
-      font-size:1.3rem;
+      font-size:1.1rem;
       margin-top:25%;
     }
   
@@ -99,8 +99,8 @@ height:3rem;
 font-size:1.5rem;
 color:white;
 @media(max-height:400px){
-  width:8rem;
-  height:2.5rem;
-  font-size:1.2rem;
+  width:7rem;
+  height:2rem;
+  font-size:1rem;
 }
 `;
