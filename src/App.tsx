@@ -33,7 +33,6 @@ const App = () => {
           <LoginContext.Provider value={{ state: loginState, dispatch: loginActions }}>
             <AppContainer   theme={theme.state.isLight} >
             <Route exact path="/" component={Landing} />
-            <Route path="/home" component={Landing} />
             <Route path="/dashboard" component={Dashboard} />
           </AppContainer>
         </LoginContext.Provider>

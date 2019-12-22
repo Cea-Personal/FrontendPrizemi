@@ -47,11 +47,11 @@ export default Modal
 const Container = styled.div`
   width:25%;
   position:fixed;
-  z-index:+2;
-  top:30%;
   border-radius:10px;
+  top:30vh;
+  background-color:#fff;
   height:30vh;
-  background-color:#ffffff;
+  z-index:+3;
   display:flex;
   flex-direction:column;
   box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.25);
@@ -69,14 +69,12 @@ border-radius:10px 10px 0px 0px;
 display:flex;
 align-items:center;
 justify-content:space-between;
-
-p{margin:0;
+p{
   color:#ffffff;
   font-size:1.5rem;
   text-align:center;
   width:90%;
   margin-left:5%;
-  margin-top:5%;
 }
 `;
 const Actions = styled.div`
@@ -98,6 +96,6 @@ const Icon  = styled.div`
   align-items:center;
   justify-content:center;
   p{
-    font-size:1.5rem;
+    font-size:1rem;
   }
 `;

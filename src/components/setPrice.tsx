@@ -15,7 +15,8 @@ const ProcessDescription = () => {
                     <p className='heading'>{eachInfo.heading}</p>
                     <p className='moreDetails'>{eachInfo.details}</p>
                 </Description>
-               
+
+            
             )}
             </Details>
                <Learn>
@@ -37,9 +38,7 @@ width:100%;
 height: 100%;
 padding-top:5%;
 background-color:#f2f2f2;
-
 flex-direction:column;
-clip-path: polygon(100% 0%, 0% 0%, 0% 100%, 100% 90%, 100% 90%);
 @media(max-width:500px){
   clip-path:none;
 }
@@ -56,8 +55,11 @@ p{
 const Description = styled.div`
 margin-top:5%;
 width:30%;
+padding:1%;
+border-radius:10px;
 @media(max-width:500px){
     width:100%;
+    margin-top:10vh;
 }
 .heading{
     font-size:1.5rem;
@@ -77,10 +79,12 @@ width:30%;
     font-size:1rem;
     color:#091E42;
     text-align:left;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
   }
 
 img{
     width:100%;
+    height:50%;
 }
 
 `;

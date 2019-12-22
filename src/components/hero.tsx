@@ -4,7 +4,6 @@ import styled from "styled-components";
 import { useIdentityContext } from "react-netlify-identity";
 import banner from '../assests/banner.svg';
 import banner2 from '../assests/banner2.svg';
-import { FaChevronDown } from 'react-icons/fa';
 import {useHistory} from 'react-router'
 
 
@@ -23,7 +22,6 @@ const Hero = () => {
         </p>
         <Button onClick={getStarted}>Get Started </Button>
       </Details>
-      <Movedown><FaChevronDown /></Movedown>
     </Container>
   )
 }
@@ -39,7 +37,7 @@ const Container = styled.div<{ isInactive: boolean , isModalOpen:boolean }>`
   background:url(${banner}) white;
   ${props => (props.isInactive && `pointer-events: none`)};
   ${props => (props.isModalOpen && `opacity: 0.5`)};
-  ${props => (props.isModalOpen ? `height: 96vh`: 'height:50rem')};
+  ${props => (props.isModalOpen ? `height:96vh`: 'height:46rem')};
   background-repeat:no-repeat;
   background-size:95%;
   flex-direction: column;
@@ -70,6 +68,7 @@ const Details = styled.div`
   p {
     font-size:2.5rem;
     color:white;
+    line-height:5vh;
     background-size:95%;
     @media(max-width:500px){
      font-size:1.8rem;
@@ -87,13 +86,4 @@ width:13rem;
 height:3rem;
 font-size:1.5rem;
 color:white;
-`;
-const Movedown = styled.div`
-display:none
-@media(max-width:500px){
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  font-size:2rem;
-}
 `;

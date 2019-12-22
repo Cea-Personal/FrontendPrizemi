@@ -18,16 +18,16 @@ export default Footer
 const Container = styled.div<{ isInactive: boolean}>`
 height:20vh;
 width:100%;
+background:#091E42;
 ${props => (props.isInactive ? `display: none `: `display:flex`)};
 justify-content:center;
 align-items:center;
-clip-path: polygon(100% 0%, 0% 40%, 0% 100%, 100% 100%);
 @media(max-width:500px){
     clip-path:none;
     flex-direction:column;
 }
 p{
-    color:#091E42;
+    color:#fff;
     margin-top:5%;
     width:40%;
     text-align:center;
@@ -51,7 +51,7 @@ a{
     font-weight:bold;
     margin:0 3%;
     font-size:1.2rem;
-    color:#091E42;
+    color:#fff;
     @media(max-width:500px){
         font-size:.8rem;
     }

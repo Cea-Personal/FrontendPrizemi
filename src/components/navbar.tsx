@@ -32,7 +32,7 @@ const Navbar = () => {
              
             </Logo >
             <Actions className='actions' isModalOpen={UseLoginContext.state.isModalOpen} mobile={isMobile}>
-                <NavLink to='/home' >Home</NavLink>
+                <NavLink to='/' >Home</NavLink>
                 <NavLink to='/features' className='alternate'>Features</NavLink>
                 <NavLink to='/contact'>Contact</NavLink>
                 <NavLink to='/contact' className='alternate' >Feedback</NavLink>
@@ -54,8 +54,6 @@ const Container = styled.div<{ scroll: number, height: number }>`
   ${props => (props.scroll > props.height / 52 ? `position: fixed` : `position:absolute`)};
   ${props => (props.scroll > props.height / 52 && `background-color: #6554C0`)};
   ${props => (props.scroll > props.height / 52 && `box-shadow: -1px 3px 5px -1px rgba(0,0,0,0.3)`)};
-${props => (props.scroll > props.height / 4.5 && `background-color:#ffffff`)};
-${props => (props.scroll > props.height / 2.1 && `background-color:#091E42`)};
   opacity:1;
     height:10vh;
     z-index:4;
@@ -65,7 +63,6 @@ ${props => (props.scroll > props.height / 2.1 && `background-color:#091E42`)};
     .actions{
         a ,p, svg{
             color: #091E42;
-            ${props => (props.scroll > props.height / 2.1 && `color:#ffffff`)};
         } 
     }
     @media(max-width:500px){
