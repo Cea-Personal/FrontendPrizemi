@@ -74,6 +74,9 @@ const Container = styled.div<{ scroll: number, height: number }>`
         display:flex;
         flex-direction:column;
     }
+    @media(max-height:400px){
+        height:15vh;
+    }
 `
 const Button3 = styled.button`
     font-size:1rem;
@@ -97,6 +100,9 @@ const Logo = styled.div<{ isModalOpen: boolean }>`
     @media(max-width:800px) and (min-height:401px){
         margin-left:0;
         width:100%;
+    }
+    @media(max-height:400px){
+        width:15%;
     }
     p{  z-index:6;
         font-size:2rem;
@@ -211,9 +217,9 @@ const Button2 = styled.button<{ isModalOpen?: boolean, mobile: boolean , isLogge
     span{
         margin-right:10%;
     }
-    @media(max-height:450px){
+    @media(max-height:400px){
         font-size:0.9rem;
-        width:18%;
+        width:20%;
         margin-right:15%;
     }
     @media(max-width:800px) and (min-height:401px){
