@@ -37,17 +37,24 @@ const Container = styled.div<{ isInactive: boolean , isModalOpen:boolean }>`
   background:url(${banner}) white;
   ${props => (props.isInactive && `pointer-events: none`)};
   ${props => (props.isModalOpen && `opacity: 0.5`)};
-  ${props => (props.isModalOpen ? `height:96vh`: 'height:46rem')};
+  height:96vh;
   background-repeat:no-repeat;
   background-size:95%;
   flex-direction: column;
-  @media(max-width:500px){
+  @media(max-width:800px) and (min-height:401px){
     height:100vh;
-    z-index:+1;
     background-image:url(${banner2}) ;
     background-position:top right;
     background-size:220%;
     background-color:#6554C0;
+  }
+  @media(max-height:401px){
+    width:100%;
+    background:url(${banner}) white;
+    heigth:100vh;
+    background-repeat:no-repeat;
+    background-size:95%;
+    flex-direction: column;
   }
 `;
 const Details = styled.div`
@@ -59,21 +66,26 @@ const Details = styled.div`
   justify-content:center; 
   align-items:center;
   text-align:center;
-  @media(max-width:500px){
+  @media(max-width:800px) and (min-height:401px){
     width:90%;
     margin-left:5%;
     margin-top:65%;
   }
-
   p {
     font-size:2.5rem;
     color:white;
-    line-height:5vh;
+    line-height:6vh;
     background-size:95%;
-    @media(max-width:500px){
+    @media(max-width:800px) and (min-height:401px){
      font-size:1.8rem;
     }
+    @media(max-height:400px){
+      font-size:1.5rem;
+      margin-top:25%;
+    }
+  
   }
+ 
 `;
 const Button = styled.button`
 margin-top:5%;
@@ -86,4 +98,9 @@ width:13rem;
 height:3rem;
 font-size:1.5rem;
 color:white;
+@media(max-height:400px){
+  width:10rem;
+  height:2.5rem;
+  font-size:1.5rem;
+}
 `;

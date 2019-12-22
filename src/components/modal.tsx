@@ -55,7 +55,7 @@ const Container = styled.div`
   display:flex;
   flex-direction:column;
   box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.25);
-  @media(max-width:500px){
+  @media(max-width:800px){
     width:80%;
     margin:0 10%;
     height:40vh;

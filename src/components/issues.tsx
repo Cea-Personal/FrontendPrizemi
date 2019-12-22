@@ -25,7 +25,7 @@ export default StatementOfIssuesContainer
 const Container = styled.div`
 width:60%;
 padding-top:5%;
-@media(max-width:500px){
+@media(max-width:800px){
   width:100%;
   padding-top:1%;
  }
@@ -36,7 +36,7 @@ margin-left:7%;
 width:100%;
 font-weight:bold;
 color: #091E42;
-@media(max-width:500px){
+@media(max-width:800px){
   margin-left:5%;
   margin-top:5%;
   font-size:1rem;
@@ -51,7 +51,10 @@ const Issue = styled.div`
   font-size:1.5rem;
   color:#6554C0;
   padding-bottom:5%;
-  @media(max-width:500px){
+  @media (max-height:400px){
+    padding-bottom:0;
+      }
+  @media(max-width:800px) and (min-height:401px){
     padding-bottom:0;
     margin-bottom:5%;
       }
@@ -60,8 +63,9 @@ const Issue = styled.div`
     margin-left:5%;
     color: #091E42;
     width:80%;
-    @media(max-width:500px){
+    @media(max-width:800px){
     font-size:1rem;
       }
+     
   }
 `;

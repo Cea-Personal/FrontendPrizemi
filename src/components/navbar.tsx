@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react';
 import { LoginContext, ScrollContext } from '../state/context';
 import { NavLink } from 'react-router-dom';
 import { useIdentityContext } from "react-netlify-identity";
-import { FaUser, FaBars , FaTimes , FaArrowRight } from 'react-icons/fa'
+import { FaUser, FaArrowRight } from 'react-icons/fa'
 import styled from 'styled-components';
 import logo from '../assests/logo.svg';
 import Modal from './modal'
@@ -12,7 +12,7 @@ const Navbar = () => {
     const [isMobile, setIsMobile] = useState(false)
     const UseScrollContext = useContext(ScrollContext)
     const { isLoggedIn } = useIdentityContext()
-    const linkClicked = (value : string) => {
+    const AuthClicked = (value : string) => {
         UseLoginContext.dispatch({ type: 'open', payload: value  })
         setIsMobile(false)
 
@@ -22,23 +22,28 @@ const Navbar = () => {
         !isMobile && UseLoginContext.dispatch({ type: 'stopScroll'})
     
     }
+    const OtherLinksClicked = ()=> {
+        setIsMobile(false)
+        UseLoginContext.dispatch({type:'close'})
+
+    }
 
     return (
         <Container scroll={UseScrollContext.state.scrollTop} height={UseScrollContext.state.scrollHeight}>
             <Logo className='actions' isModalOpen={UseLoginContext.state.isModalOpen}>
                 <p>PrizeMi</p>
-                <Hamburger className='actions' >{
-                !isMobile ? <FaBars onClick={() => hamBurgerClicked()} /> : <FaTimes onClick={() => hamBurgerClicked()} />}</Hamburger>
+                <Hamburger className='actions' >
+    {!isMobile ? <Button3 onClick={() => hamBurgerClicked()} > Menu </Button3>  :<Button3 onClick={() => OtherLinksClicked()} > Close </Button3> }</Hamburger>
              
             </Logo >
             <Actions className='actions' isModalOpen={UseLoginContext.state.isModalOpen} mobile={isMobile}>
-                <NavLink to='/' >Home</NavLink>
-                <NavLink to='/features' className='alternate'>Features</NavLink>
-                <NavLink to='/contact'>Contact</NavLink>
-                <NavLink to='/contact' className='alternate' >Feedback</NavLink>
+                <NavLink to='/' onClick={() => OtherLinksClicked()}>Home</NavLink>
+                <NavLink to='/features' className='alternate' onClick={() => OtherLinksClicked()}>Features</NavLink>
+                <NavLink to='/contact' onClick={() => OtherLinksClicked()}>Contact</NavLink>
+                <NavLink to='/contact' className='alternate' onClick={() => OtherLinksClicked()} >Feedback</NavLink>
             </Actions>
-            {!isLoggedIn  && <Button isLoggedIn={isLoggedIn} mobile={isMobile} isModalOpen={UseLoginContext.state.isModalOpen} onClick={() => linkClicked('Signup on PrizeMi') }>Sign Up</Button>}
-            {!isLoggedIn  && <Button2 isLoggedIn={isLoggedIn} mobile={isMobile} className='login' isModalOpen={UseLoginContext.state.isModalOpen} onClick={() => linkClicked('Login to Prizemi')}><span>Log In</span><FaArrowRight/></Button2>}
+            {!isLoggedIn  && <Button isLoggedIn={isLoggedIn} mobile={isMobile} isModalOpen={UseLoginContext.state.isModalOpen} onClick={() => AuthClicked('Signup on PrizeMi') }>Sign Up</Button>}
+            {!isLoggedIn  && <Button2 isLoggedIn={isLoggedIn} mobile={isMobile} className='login' isModalOpen={UseLoginContext.state.isModalOpen} onClick={() => AuthClicked('Login to Prizemi')}><span>Log In</span><FaArrowRight/></Button2>}
             {isLoggedIn && <Button isLoggedIn ={isLoggedIn} mobile={isMobile} isModalOpen={UseLoginContext.state.isModalOpen}>Dashboard</Button> }
             {isLoggedIn  && <Button2  isLoggedIn ={isLoggedIn} mobile={isMobile} className='login' isModalOpen={UseLoginContext.state.isModalOpen}><span>Your Profile</span><FaArrowRight/></Button2>}
             {/* <Button onClick={logoutUser}>Log Out</Button>} */}
@@ -65,12 +70,19 @@ const Container = styled.div<{ scroll: number, height: number }>`
             color: #091E42;
         } 
     }
-    @media(max-width:500px){
+    @media(max-width:800px) and (min-height:401px){
         display:flex;
         flex-direction:column;
-
     }
 `
+const Button3 = styled.button`
+    font-size:1rem;
+    background-color:#fff;
+    border-radius:5px;
+    outline:none;
+    border:none;
+    color: #091E42;
+`;
 const Logo = styled.div<{ isModalOpen: boolean }>`
     display:flex;
     z-index:6;
@@ -81,19 +93,18 @@ const Logo = styled.div<{ isModalOpen: boolean }>`
     width:25%;
     margin-left:10%;
     height:100%;
-    @media(max-width:500px){
+ 
+    @media(max-width:800px) and (min-height:401px){
         margin-left:0;
         width:100%;
-    }
-    img{
-        width:25%;
-        height:100%;
-        z-index:6;
     }
     p{  z-index:6;
         font-size:2rem;
         font-weight:bold;
-        @media(max-width:500px){
+        @media(max-height:450px){
+            font-size:1.5rem;
+        }
+        @media(max-width:800px) and (min-height:401px){
             width:90%;
             text-align:center;
         }
@@ -110,10 +121,15 @@ const Actions = styled.div<{ mobile: boolean ,isModalOpen:boolean }>`
     ${props => (props.isModalOpen && `opacity: 0.3`)};
     font-weight:bold;
     font-size:1.2rem;
+    @media(max-height:450px){
+        font-size:0.9rem;
+        width:60%;
+    }
     a{  
         text-decoration:none;
     }
-    @media(max-width:500px){
+  
+    @media(max-width:800px) and (min-height:401px){
     ${props => (props.mobile ? `flex-direction: column ` : `display:none`)};
     width:90%;
     height:50vh;
@@ -139,7 +155,7 @@ const Actions = styled.div<{ mobile: boolean ,isModalOpen:boolean }>`
 
 const Hamburger = styled.div`
 display:none;
-@media(max-width:500px){
+@media(max-width:800px) and (min-height:401px){
 display:flex;
 align-items:center;
 font-size:1.5rem;
@@ -161,7 +177,7 @@ const Button = styled.button<{ mobile: boolean , isModalOpen?:boolean , isLogged
     height:50%;
     background-color:#ffffff;
     z-index:6;
-    @media(max-width:500px){
+    @media(max-width:800px) and (min-height:401px){
         width:90%;
         ${props => (props.mobile ? `display:flex` : `display:none`)};
         position:fixed;
@@ -195,7 +211,12 @@ const Button2 = styled.button<{ isModalOpen?: boolean, mobile: boolean , isLogge
     span{
         margin-right:10%;
     }
-    @media(max-width:500px){
+    @media(max-height:450px){
+        font-size:0.9rem;
+        width:18%;
+        margin-right:15%;
+    }
+    @media(max-width:800px) and (min-height:401px){
         ${props => (props.mobile ? `display: flex `:`display:none`)};
         flex-direction:row;
         outline:none;

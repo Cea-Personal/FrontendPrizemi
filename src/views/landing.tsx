@@ -53,10 +53,6 @@ const Container = styled.div<{ isInactive: boolean }>`
     flex-direction:column;
 
   }
-  @media(max-height:450px){
-      flex-direction:row;
-      align-items:center;
-  }
 `;
 
 

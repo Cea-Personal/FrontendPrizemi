@@ -22,8 +22,7 @@ background:#091E42;
 ${props => (props.isInactive ? `display: none `: `display:flex`)};
 justify-content:center;
 align-items:center;
-@media(max-width:500px){
-    clip-path:none;
+@media(max-width:800px) and (min-height:401px){
     flex-direction:column;
 }
 p{
@@ -33,7 +32,7 @@ p{
     text-align:center;
     font-weight:bold;
     font-size:2rem;
-    @media(max-width:500px){
+    @media(max-width:800px){
       font-size:1.2rem;
     }
 }`;
@@ -41,7 +40,7 @@ const Links = styled.div`
 display:flex;
 width:60%;
 justify-content:center;
-@media(max-width:500px){
+@media(max-width:800px) and (min-height:401px){
   width:100%;
   order:-1;
 }
@@ -52,7 +51,7 @@ a{
     margin:0 3%;
     font-size:1.2rem;
     color:#fff;
-    @media(max-width:500px){
+    @media(max-width:800px){
         font-size:.8rem;
     }
 }
