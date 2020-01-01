@@ -17,8 +17,11 @@ const Hero = () => {
     <Container isModalOpen={UseLoginContext.state.isModalOpen} isInactive={UseLoginContext.state.inactive}>
       <Details>
         <p>
-          Feature-based price management system for developers
+          Feature-Based Price Management 
         </p>
+        <Description>
+          Requirement management.Better time estimation. Improved price negotiations for software projects.
+        </Description>
         <Button onClick={getStarted}>Get Started </Button>
       </Details>
     </Container>
@@ -37,23 +40,38 @@ const Container = styled.div<{ isInactive: boolean , isModalOpen:boolean }>`
   ${props => (props.isInactive && `pointer-events: none`)};
   ${props => (props.isModalOpen && `opacity: 0.5`)};
   height:130vh;
-  background-repeat:repeat-x;
+  background-repeat:no-repeat;
   background-size:100%;
   flex-direction: column;
-  @media(max-height:401px){
-    width:100%;
-    background:url(${banner}) white;
-    height:100vh;
+  @media(max-width:800px) and (min-height:401px){
+    background-size:cover;
     background-repeat:no-repeat;
-    background-size:95%;
-    flex-direction: column;
+    background-position:center;
+    height:100vh;
+    width:100%;
   }
 `;
-
+const Description = styled.div`
+width:40%;
+padding-top:0%;
+font-size:1.5rem;
+line-height:2rem;
+color:#fff;
+@media(max-height:400px){
+  font-size:1rem;
+  line-height:1.5rem;
+  width:60%;
+ 
+}
+@media(max-width:800px) and (min-height:401px){
+ font-size:1rem;
+ width:90%;
+ line-height:1.5rem;
+}
+`;
 const Details = styled.div`
-  width:30%;
-  margin-left:15%;
-  height:80%;
+  width:100%;
+  height:70%;
   display: flex;
   flex-direction:column;
   justify-content:center; 
@@ -62,35 +80,39 @@ const Details = styled.div`
   @media(max-width:800px) and (min-height:401px){
     width:90%;
     margin-left:5%;
-    margin-top:65%;
   }
   p {
-    font-size:2.5rem;
+    font-size:3rem;
     color:white;
     line-height:6vh;
     background-size:95%;
     @media(max-width:800px) and (min-height:401px){
-     font-size:1.8rem;
+     font-size:1.5rem;
     }
     @media(max-height:400px){
-      font-size:1.1rem;
-      margin-top:25%;
+      font-size:2rem;
+      margin-top:1%;
     }
   
   }
  
 `;
 const Button = styled.button`
-margin-top:5%;
-background: #091E42;
+margin-top:2%;
+background: #fff;
 box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-border-radius: 30px;
+border-radius: 10px;
 border:none;
 outline:none;
-width:13rem;
+width:10rem;
 height:3rem;
 font-size:1.5rem;
-color:white;
+color:#595959;
+@media(max-width:800px) and (min-height:401px){
+  width:8rem;
+  height:2rem;
+  font-size:1rem;
+ }
 @media(max-height:400px){
   width:7rem;
   height:2rem;
