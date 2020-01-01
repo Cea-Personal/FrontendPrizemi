@@ -44,9 +44,9 @@ const Navbar = () => {
                 <NavLink to='/contact' className='alternate' onClick={() => OtherLinksClicked()} >Integrations</NavLink>
             </Actions>
             {!isLoggedIn && <Button isLoggedIn={isLoggedIn} mobile={isMobile} isModalOpen={UseLoginContext.state.isModalOpen} onClick={() => AuthClicked('Signup on PrizeMi')}>Sign Up</Button>}
-            {!isLoggedIn && <Button2 isLoggedIn={isLoggedIn} mobile={isMobile} className='login' isModalOpen={UseLoginContext.state.isModalOpen} onClick={() => AuthClicked('Login to Prizemi')}><span>Log In</span><FaArrowRight /></Button2>}
+            {!isLoggedIn && <Button2 isLoggedIn={isLoggedIn} mobile={isMobile} className='login' isModalOpen={UseLoginContext.state.isModalOpen} onClick={() => AuthClicked('Login to Prizemi')}>Log In</Button2>}
             {isLoggedIn && <Button isLoggedIn={isLoggedIn} mobile={isMobile} isModalOpen={UseLoginContext.state.isModalOpen}>Dashboard</Button>}
-            {isLoggedIn && <Button2 isLoggedIn={isLoggedIn} mobile={isMobile} className='login' isModalOpen={UseLoginContext.state.isModalOpen}><span>Profile</span><FaArrowRight /></Button2>}
+            {isLoggedIn && <Button2 isLoggedIn={isLoggedIn} mobile={isMobile} className='login' isModalOpen={UseLoginContext.state.isModalOpen}>Profile</Button2>}
             {/* <Button onClick={logoutUser}>Log Out</Button>} */}
             {UseLoginContext.state.isModalOpen && <Modal />}
         </Container>
@@ -193,6 +193,7 @@ const Button = styled.button<{ mobile: boolean, isModalOpen?: boolean, isLoggedI
     font-size:1rem;
     width:8%;
     outline:none;
+    border:none;
     border-radius:5px;
     height:50%;
     z-index:6;

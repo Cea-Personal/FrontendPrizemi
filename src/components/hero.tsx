@@ -52,7 +52,7 @@ const Container = styled.div<{ isInactive: boolean , isModalOpen:boolean }>`
   }
 `;
 const Description = styled.div`
-width:40%;
+width:50%;
 padding-top:0%;
 font-size:1.5rem;
 line-height:2rem;
@@ -71,7 +71,8 @@ color:#fff;
 `;
 const Details = styled.div`
   width:100%;
-  height:70%;
+  height:50%;
+  margin-top:2%;
   display: flex;
   flex-direction:column;
   justify-content:center; 
@@ -84,9 +85,11 @@ const Details = styled.div`
   p {
     font-size:3rem;
     color:white;
+    margin:1%;
     line-height:6vh;
     background-size:95%;
     @media(max-width:800px) and (min-height:401px){
+      margin-top:20%;
      font-size:1.5rem;
     }
     @media(max-height:400px){
