@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom';
 import { useIdentityContext } from "react-netlify-identity";
 import { FaUser, FaArrowRight } from 'react-icons/fa'
 import styled from 'styled-components';
-import logo from '../assests/logo.svg';
+// import logo from '../assests/logo.svg';
 import Modal from './modal'
 
 const Navbar = () => {

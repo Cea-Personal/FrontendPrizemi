@@ -33,10 +33,10 @@ const Home = () => {
   return (
     <Container isInactive={UseLoginContext.state.inactive} ref={appRef}>
       <Navbar />
-      <Hero/>
+      <Hero />
       <Solution />
-      <SetPrice  />
-      <Footer/>
+      <SetPrice />
+      <Footer />
     </Container>
   );
 };

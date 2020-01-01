@@ -2,14 +2,14 @@ import React,{useContext} from "react";
 import styled from "styled-components";
 import {NavLink} from 'react-router-dom';
 import { LoginContext } from '../state/context';
-import Info from '../data/landingPage/priceProcess'
+// import Info from '../data/landingPage/priceProcess'
 const ProcessDescription = () => {
     const UseLoginContext = useContext(LoginContext)
     return (
         <Container isInactive={UseLoginContext.state.inactive} isModalOpen={UseLoginContext.state.isModalOpen}>
             <p>Setting the price for your software job has a better approach</p>
             <Details>
-            {Info.map(eachInfo =>
+            {/* {Info.map(eachInfo =>
                 <Description key={eachInfo.id}>
                     <img src ={eachInfo.image} alt =''/>
                     <p className='heading'>{eachInfo.heading}</p>
@@ -17,12 +17,8 @@ const ProcessDescription = () => {
                 </Description>
 
             
-            )}
+            )} */}
             </Details>
-               <Learn>
-                  <p> Learn more about PrizeMi</p>
-                  <NavLink to='/features'>See features</NavLink> 
-              </Learn>
         </Container>
 
     )
@@ -45,7 +41,7 @@ flex-direction:column;
 p{
     text-align:center;
     font-size:2rem;
-    color: #B89400;
+    color: #091E42;
     @media(max-width:800px){
         font-size:1.5rem;
     }
@@ -107,29 +103,3 @@ const Details = styled.div`
     }
   
 `
-const Learn = styled.div`
-display:flex;
-width:80%;
-margin:5% 10%;
-padding:5% 10%;
-border-top:2px solid #091E42;
-align-items:center;
-justify-content:space-evenly;
-@media(max-width:800px){
-    flex-direction:column;
-}p{
-    padding-bottom:5%;
-}
-a{
-    text-decoration:none;
-    color:#fff;
-    background-color:#091E42;
-    display:flex;
-    width:150px;
-    height:40px;
-    align-items:center;
-    justify-content:center;
-    border-radius:10px;
-
-}
-`;

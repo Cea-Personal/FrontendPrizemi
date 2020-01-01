@@ -1,7 +1,7 @@
 
 import React, { useContext } from "react";
 import styled from "styled-components";
-import PicturesOfIssues from '../assests/issues.svg'
+// import PicturesOfIssues from '../assests/issues.svg'
 import StatementOfIssuesContainer from './issues'
 import { LoginContext } from '../state/context';
 
@@ -14,7 +14,7 @@ const Issues = () => {
                 <Goodbye>Prizemi features helps developers build applications by managing stakeholders and requirements.</Goodbye>
             </Heading>
             <Details>
-                <img src={PicturesOfIssues} alt='' />
+                {/* <img src={PicturesOfIssues} alt='' /> */}
                 <StatementOfIssuesContainer />
             </Details>
         </Container>
@@ -93,8 +93,8 @@ img{
     height:60vh;
     transform:translateY(-7vh);
     @media(max-height:400px){
-        transform:translateY(-20vh);
-        height:90vh;
+        transform:translateY(-25vh);
+        height:100vh;
         width:55%;
     }
     @media(max-width:800px) and (min-height:401px){

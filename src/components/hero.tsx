@@ -3,7 +3,6 @@ import { LoginContext } from '../state/context';
 import styled from "styled-components";
 import { useIdentityContext } from "react-netlify-identity";
 import banner from '../assests/banner.svg';
-import banner2 from '../assests/banner2.svg';
 import {useHistory} from 'react-router'
 
 
@@ -37,26 +36,20 @@ const Container = styled.div<{ isInactive: boolean , isModalOpen:boolean }>`
   background:url(${banner}) white;
   ${props => (props.isInactive && `pointer-events: none`)};
   ${props => (props.isModalOpen && `opacity: 0.5`)};
-  height:96vh;
-  background-repeat:no-repeat;
-  background-size:95%;
+  height:130vh;
+  background-repeat:repeat-x;
+  background-size:100%;
   flex-direction: column;
-  @media(max-width:800px) and (min-height:401px){
-    height:100vh;
-    background-image:url(${banner2}) ;
-    background-position:top right;
-    background-size:220%;
-    background-color:#6554C0;
-  }
   @media(max-height:401px){
     width:100%;
     background:url(${banner}) white;
-    heigth:100vh;
+    height:100vh;
     background-repeat:no-repeat;
     background-size:95%;
     flex-direction: column;
   }
 `;
+
 const Details = styled.div`
   width:30%;
   margin-left:15%;
