@@ -8,7 +8,7 @@ Prizemi is a feature based price and stakeholder management tool for freelance s
 
 ## Frontend Tech stack
 
-React, Typescript, Serverless , Lambda Functions
+React, Typescript, Serverless , Lambda Functions , tslint
 
 ===============================================================================
 
