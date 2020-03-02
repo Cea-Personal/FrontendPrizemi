@@ -14,7 +14,7 @@ React, Typescript, Serverless , Lambda Functions , tslint
 
 ## Contributors
 
-|                                      [Ogbonna Basil](https://github.com/basilcea) - Team Lead                                      |
+|                                      [Ogbonna Basil](https://github.com/basilcea)                                    |
 | :--------------------------------------------------------------------------------------------------------------------------------: |
 |     [<img src="https://ca.slack-edge.com/T4JUEB3ME-UJ27SUD9C-b7cdcdc19c37-512" width = "200" />](https://github.com/basilcea)      |
 |                       [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/basilcea)                        |
