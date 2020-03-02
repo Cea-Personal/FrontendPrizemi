@@ -62,7 +62,7 @@ const Container = styled.div<{ scroll: number, height: number, isModalOpen: bool
   ${props => (props.scroll > props.height / 52 && `box-shadow: -1px 3px 5px -1px rgba(0,0,0,0.3)`)};
   opacity:1;
     height:10vh;
-    z-index:4;
+    z-index:+6;
     width:100%;
     display:flex;
     justify-content:center;
@@ -76,9 +76,7 @@ const Container = styled.div<{ scroll: number, height: number, isModalOpen: bool
         }
     }
     @media(max-width:800px) and (min-height:401px){
-        display:flex;
         flex-direction:column;
-        ${props => (props.isModalOpen && `height: 100vh`)};
     }
     @media(max-height:400px){
         height:15vh;

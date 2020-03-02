@@ -17,7 +17,7 @@ const Hero = () => {
     <Container isModalOpen={UseLoginContext.state.isModalOpen} isInactive={UseLoginContext.state.inactive}>
       <Details>
         <p>
-          Feature-Based Price Management 
+          Pricing Management For Freelancers.
         </p>
         <Description>
           Requirement management.Better time estimation. Improved price negotiations for software projects.
