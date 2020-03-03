@@ -1,11 +1,12 @@
-# commit message format
-
+# Commit message format
+```
 <type>(<scope>): <subject>
 <BLANK LINE>
 <body>
 <BLANK LINE>
 <footer>
-  
+
+``` 
 Any line of the commit message cannot be longer 100 characters! This allows the message to be easier to read on github as well as in various git tools.
 
 ### Subject line
