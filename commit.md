@@ -62,18 +62,18 @@ When a user is on any page, he/she should see social media buttons in the footer
 closes #12345
 
 # Branch-Naming Convention
-{github username}-{story type}-{2-3 word summary}
+{github username}/{story type}-{2-3 word summary}
 
 story-type - Indicates the context of the branch and should be one of:
 
-ft == Feature
+```ft == Feature
 
 bg == Bug
 
 ch == Chore
 
 story-summary - Short 2-3 words summary about what the branch contains
-
+```
 Example
 
-basilcea-ft-resources-rest-endpoints
+basilcea/ft-resources-rest-endpoints
