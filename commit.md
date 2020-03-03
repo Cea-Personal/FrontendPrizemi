@@ -71,6 +71,7 @@ ft == Feature
 bg == Bug
 
 ch == Chore
+
 story-summary - Short 2-3 words summary about what the branch contains
 
 Example
